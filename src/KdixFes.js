@@ -2,7 +2,7 @@ import React from 'react'
 
 function KdixFes() {
     return (
-        <div>KdixFes</div>
+        <div></div>
     )
 }
 
