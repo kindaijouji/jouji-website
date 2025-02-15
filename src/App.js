@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/qaboox" element={<QABox />} />
+        <Route path="/qabox" element={<QABox />} />
         <Route path="/kdixfes" element={<KdixFes />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
       </Routes>
