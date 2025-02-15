@@ -1,8 +1,10 @@
 import React from 'react'
+import SpreadsheetDisplay from './SpreadsheetDisplay'
+
 
 function QABox() {
     return (
-        <div>QABox</div>
+        <div><SpreadsheetDisplay /></div>
     )
 }
 
