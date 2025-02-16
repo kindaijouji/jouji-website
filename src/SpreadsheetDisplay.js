@@ -21,7 +21,9 @@ const SpreadsheetDisplay = () => {
         // URLからデータをフェッチ
         fetch(url)
             // レスポンスをテキストとして取得
-            .then(response => response.text())
+            .then(response =>
+                response.text()
+            )
             // CSVデータを処理
             .then(csvData => {
                 // CSVの各行を配列に分割し、引用符を削除
