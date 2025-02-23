@@ -8,11 +8,11 @@ function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* Organization Info */}
                     <div>
-                        <h3 className="text-xl font-bold mb-4">近畿大学情報学部</h3>
+                        {/* <h3 className="text-xl font-bold mb-4">近畿大学情報学部</h3>
                         <p className="text-gray-300 mb-2">
                             〒577-8502<br />
                             大阪府東大阪市小若江３丁目４−１
-                        </p>
+                        </p> */}
                     </div>
 
                     {/* Quick Links */}
