@@ -7,8 +7,14 @@ const Footer = () => {
                 <div className="flex justify-between items-start">
                     <div>
                         <h2 className="text-2xl font-bold tracking-wider mb-4">
-                            情報学部自治会
+                            近畿大学情報学部自治会
+
                         </h2>
+                        <p className='font-bold tracking-wider mb-4'>
+                            近畿大学東大阪キャンパス
+                            <br></br>
+                            E館1階自治会室
+                        </p>
                         <div className="flex space-x-4">
                             <a href="https://kindaijouji.com" className="text-gray-400 hover:text-white transition-colors">
                                 <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
@@ -29,7 +35,6 @@ const Footer = () => {
                             <ul className="space-y-2 text-sm text-gray-400">
                                 <li className="hover:text-white transition-colors cursor-pointer">自治会について</li>
                                 <li className="hover:text-white transition-colors cursor-pointer">年間予定</li>
-                                <li className="hover:text-white transition-colors cursor-pointer">過去のお知らせ</li>
                                 <li className="hover:text-white transition-colors cursor-pointer">過去イベント一覧</li>
                             </ul>
                         </div>
