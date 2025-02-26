@@ -19,7 +19,7 @@ const QABox = () => {
 
     return (
         <div className="min-h-screen pt-16">
-            {/* スタイル切り替えセレクタ（開発時のみ表示、本番では削除可能） */}
+            {/* スタイル切り替えセレクタ（開発時のみ表示、本番では削除） */}
             <div className="bg-gray-100 py-2 px-4">
                 <div className="max-w-7xl mx-auto flex items-center text-sm">
                     <span className="mr-2 font-medium">ヘッダースタイル:</span>
