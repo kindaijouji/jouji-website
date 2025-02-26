@@ -43,7 +43,7 @@ const QAList = () => {
                 const rows = csvData.split('\n').map(row =>
                     row.split(',').map(cell => cell.replace(/^"|"$/g, ''))
                 );
-
+                //console.log(rows); // データの確認（開発中のデバッグ用）
                 // 1行目（ヘッダー行）を取得 - カラム名が含まれている
                 const headers = rows[0];
 
@@ -57,7 +57,7 @@ const QAList = () => {
                     header.includes('公開')); // 公開許可が含まれるカラムを探す
                 const categoryIndex = headers.findIndex(header =>
                     header.includes('カテゴリー')); // カテゴリーが含まれるカラムを探す
-
+                //console.log(questionIndex, answerIndex, publicPermissionIndex, categoryIndex); // インデックスの確認（開発中のデバッグ用）
                 // データを加工して必要な形式に整形
                 const filteredData = rows.slice(1)  // ヘッダー行（0番目）をスキップして残りのデータ行を取得
                     // 公開許可が「はい」のデータのみをフィルタリング
@@ -155,7 +155,7 @@ const QAList = () => {
     return (
         <div>
             {/* ヘッダータイトル */}
-            <h2 className="text-xl font-bold mb-6">よくある質問</h2>
+            <h2 className="text-xl font-bold mb-6">質問と回答</h2>
 
             {/* 検索・フィルターUI */}
             <div className="flex flex-col md:flex-row gap-4 mb-6">
