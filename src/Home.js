@@ -3,31 +3,94 @@ import { ArrowRight } from 'lucide-react';
 
 const Home = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [heroBackgroundType, setHeroBackgroundType] = useState('default'); // default, solid, gradient
 
     useEffect(() => {
         setIsVisible(true);
     }, []);
 
+    // 背景スタイルの取得関数
+    const getBackgroundStyle = () => {
+        switch (heroBackgroundType) {
+            case 'solid':
+                return 'bg-indigo-800';
+            case 'gradient':
+                return 'bg-gradient-to-r from-blue-900 via-purple-800 to-indigo-900';
+            default:
+                return 'bg-black';
+        }
+    };
+
     return (
         <div className="min-h-screen">
             {/* ヒーローセクション */}
-            <section className="h-screen relative overflow-hidden pt-16">
-                <div className="absolute inset-0 bg-black"></div>
-                <div className={`relative h-full flex items-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                    }`}>
-                    <div className="max-w-7xl mx-auto px-4 w-full">
-                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                            学生の力で、<br />
-                            より良いキャンパスライフを。
-                        </h1>
-                        <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-                            近畿大学情報学部自治会は、学生一人一人の声に耳を傾け、<br />
-                            より良い学習環境と充実したキャンパスライフの実現を目指しています。
-                        </p>
-                        <button className="bg-white text-black px-8 py-3 rounded-none inline-flex items-center group hover:bg-gray-100 transition-all">
-                            詳しく見る
-                            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+            <section className={`h-screen relative overflow-hidden pt-16 ${getBackgroundStyle()}`}>
+                {/* スタイル切り替えコントロール */}
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+                    <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-full p-2 flex space-x-2">
+                        <button 
+                            onClick={() => setHeroBackgroundType('default')}
+                            className={`w-10 h-10 rounded-full transition ${
+                                heroBackgroundType === 'default' 
+                                    ? 'bg-black text-white' 
+                                    : 'bg-white bg-opacity-30 text-white'
+                            }`}
+                            aria-label="デフォルト背景"
+                            title="デフォルト背景"
+                        >
+                            <span className="block w-full text-center">1</span>
                         </button>
+                        <button 
+                            onClick={() => setHeroBackgroundType('solid')}
+                            className={`w-10 h-10 rounded-full transition ${
+                                heroBackgroundType === 'solid' 
+                                    ? 'bg-indigo-800 text-white' 
+                                    : 'bg-white bg-opacity-30 text-white'
+                            }`}
+                            aria-label="単色背景"
+                            title="単色背景"
+                        >
+                            <span className="block w-full text-center">2</span>
+                        </button>
+                        <button 
+                            onClick={() => setHeroBackgroundType('gradient')}
+                            className={`w-10 h-10 rounded-full transition ${
+                                heroBackgroundType === 'gradient' 
+                                    ? 'bg-gradient-to-r from-blue-900 via-purple-800 to-indigo-900 text-white' 
+                                    : 'bg-white bg-opacity-30 text-white'
+                            }`}
+                            aria-label="グラデーション背景"
+                            title="グラデーション背景"
+                        >
+                            <span className="block w-full text-center">3</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div className={`relative h-full flex items-center justify-center transition-all duration-1000 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}>
+                    <div className="max-w-7xl mx-auto px-4 w-full">
+                        <div className="space-y-8 text-center">
+                            <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
+                                <div className={`transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                                    学生の力で、
+                                </div>
+                                <div className={`transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                                    より良い<span className="text-blue-400">キャンパスライフ</span>を。
+                                </div>
+                            </h1>
+                            <p className={`text-xl text-gray-300 mb-8 max-w-2xl mx-auto transition-all duration-700 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                                近畿大学情報学部自治会は、学生一人一人の声に耳を傾け、
+                                より良い学習環境と充実したキャンパスライフの実現を目指しています。
+                            </p>
+                            <div className={`transition-all duration-700 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                                <button className="bg-white text-black px-10 py-4 rounded-none inline-flex items-center group hover:bg-gray-100 transition-all">
+                                    詳しく見る
+                                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
