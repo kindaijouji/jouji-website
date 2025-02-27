@@ -23,15 +23,13 @@ const QAForm = () => {
     const categories = ['自治会について', 'イベント', '学校生活', 'その他'];
 
     // Googleフォームの情報
-    // FORM_IDはフォームの一意識別子 - GoogleフォームのURLから取得できる
-    // 注：本番環境では環境変数として管理するべき情報
+
     const FORM_ID = '1FAIpQLSfbeK71d56M66oHMxmwLIK60s7AWr-NjYU-bGqxtUJwFKGwcg';
 
     // Googleフォームの応答を受け取るエンドポイントURL
     const FORM_URL = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
 
     // Googleフォームの各フィールドに対応する識別子（entry.XXXXX）をマッピング
-    // これらの識別子はGoogleフォームのHTMLソースを調査して取得する必要がある
     const FORM_FIELDS = {
         isPublic: 'entry.1062689994',      // 公開許可フィールド
         category: 'entry.525336379',       // カテゴリーフィールド
