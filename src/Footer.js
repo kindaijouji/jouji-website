@@ -1,6 +1,6 @@
 import React from 'react';
-import FooterLeft from './FooterLeft';
-import FooterRight from './FooterRight';
+import FooterInfo from './FooterInfo';
+import FooterLinks from './FooterLinks';
 
 const Footer = () => {
   return (
@@ -8,10 +8,10 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-4">
           {/* 左側のコンポーネント 組織の情報 */}
-          <FooterLeft />
+          <FooterInfo />
           
           {/* 右側のコンポーネント リンクたち */}
-          <FooterRight />
+          <FooterLinks />
         </div>
 
         {/* Copyright */}
