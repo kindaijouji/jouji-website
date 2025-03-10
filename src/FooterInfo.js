@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FooterLeft = () => {
+const FooterInfo = () => {
   return (
     <div className="w-full md:w-1/3 mb-4 md:mb-0">
       <h2 className="text-lg font-bold mb-3">
@@ -27,4 +27,4 @@ const FooterLeft = () => {
   );
 };
 
-export default FooterLeft;
+export default FooterInfo;

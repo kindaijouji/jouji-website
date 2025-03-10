@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FooterRight = () => {
+const FooterLinks = () => {
   return (
     <div className="w-full md:w-2/3">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -36,4 +36,4 @@ const FooterRight = () => {
   );
 };
 
-export default FooterRight;
+export default FooterLinks;
