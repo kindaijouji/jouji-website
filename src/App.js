@@ -1,8 +1,8 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Header";
-import Footer from "./Footer";
-import Home from "./Home";
+import Footer from "./Footer/Footer";
+import Home from "./Home/Home";
 import About from "./About";
 import QABox from "./QABox";
 import KdixFes from "./KdixFes";
