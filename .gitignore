@@ -39,3 +39,6 @@ build/
 # OS生成ファイル
 .DS_Store
 Thumbs.db
+
+.build/
+build/
