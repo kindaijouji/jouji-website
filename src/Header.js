@@ -28,7 +28,7 @@ const Header = () => {
                 <div className="flex justify-between items-center h-16">
                     <div className="flex items-center space-x-2 cursor-pointer">
                         <h1 className="text-xl font-bold tracking-wider text-black hover:text-gray-600 transition-colors">
-                            <Link to="/">近畿大学情報学部自治会</Link>
+                            <Link to="/">近畿大学情報学部自治会(デモ)</Link>
                         </h1>
                     </div>
 
