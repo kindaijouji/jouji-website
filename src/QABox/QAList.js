@@ -17,6 +17,108 @@ const QAList = () => {
     // カテゴリーの選択肢を定義 - 検索フィルターで使用
     const categoriesList = ['すべて', '自治会について', 'イベント', '学校生活', 'その他'];
 
+    // ========== ユーティリティ関数 ==========
+    // テキスト内のURLを検出して画像またはリンク表示に変換する関数
+    const formatAnswerWithImages = (text) => {
+        if (!text) return '回答準備中です';
+
+        // Googleドライブの画像URLかどうかを判定
+        const isGoogleDriveUrl = (url) => {
+            return url.includes('drive.google.com/file/d/') && url.includes('view');
+        };
+
+        // テキスト内のURLを検出するための正規表現
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+        // URLを検出して処理
+        const parts = [];
+        let lastIndex = 0;
+        let match;
+
+        // 正規表現でURLを探して分割
+        while ((match = urlRegex.exec(text)) !== null) {
+            // URL前のテキスト部分を追加
+            if (match.index > lastIndex) {
+                parts.push({
+                    type: 'text',
+                    content: text.substring(lastIndex, match.index)
+                });
+            }
+
+            // URL部分を追加
+            parts.push({
+                type: 'url',
+                content: match[0]
+            });
+
+            lastIndex = match.index + match[0].length;
+        }
+
+        // 残りのテキスト部分を追加
+        if (lastIndex < text.length) {
+            parts.push({
+                type: 'text',
+                content: text.substring(lastIndex)
+            });
+        }
+
+        // 各部分をレンダリング
+        return (
+            <>
+                {parts.map((part, index) => {
+                    if (part.type === 'text') {
+                        return <span key={index}>{part.content}</span>;
+                    } else if (part.type === 'url') {
+                        const url = part.content;
+
+                        // Googleドライブの場合、埋め込みプレビューを表示
+                        if (isGoogleDriveUrl(url)) {
+                            // Google Driveのプレビュー埋め込みiframe用のURLを作成
+                            return (
+                                <div key={index} className="my-4">
+                                    <div className="border rounded-lg overflow-hidden shadow-md">
+                                        <iframe
+                                            src={url.replace('/view', '/preview')}
+                                            title="Google Drive Preview"
+                                            width="100%"
+                                            height="480"
+                                            frameBorder="0"
+                                            scrolling="no"
+                                            className="w-full"
+                                            allow="autoplay"
+                                        ></iframe>
+                                    </div>
+                                    <a
+                                        href={url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-500 hover:underline text-sm block mt-1"
+                                    >
+                                        元のリンクを開く
+                                    </a>
+                                </div>
+                            );
+                        }
+
+                        // その他のURLはリンクとして表示
+                        return (
+                            <a
+                                key={index}
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-500 hover:underline break-words"
+                            >
+                                {url}
+                            </a>
+                        );
+                    }
+                    return null;
+                })}
+            </>
+        );
+    };
+
     // ========== データ取得処理 ==========
     // コンポーネントが最初にマウントされたときに一度だけ実行される副作用
     useEffect(() => {
@@ -197,7 +299,6 @@ const QAList = () => {
                                 <button
                                     className="w-full text-left p-4 flex items-start justify-between"
                                     onClick={() => setOpenQuestionId(openQuestionId === qa.id ? null : qa.id)}
-                                // 同じ質問をクリックした場合は閉じる、それ以外は開く
                                 >
                                     <div className="flex items-start">
                                         {/* 質問アイコン */}
@@ -221,8 +322,10 @@ const QAList = () => {
                                 {/* 回答部分 - 開いている質問IDと一致する場合のみ表示 */}
                                 {openQuestionId === qa.id && (
                                     <div className="px-11 pb-4">
-                                        {/* 回答がある場合はその回答を、なければ「回答準備中」と表示 */}
-                                        <p className="text-gray-600">{qa.answer || '回答準備中です'}</p>
+                                        {/* 回答を整形して表示 - URLを画像に変換 */}
+                                        <div className="text-gray-600">
+                                            {formatAnswerWithImages(qa.answer)}
+                                        </div>
                                     </div>
                                 )}
                             </div>
