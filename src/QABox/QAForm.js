@@ -12,6 +12,7 @@ const QAForm = () => {
     const [question, setQuestion] = useState('');         // 質問内容 - 初期値は空文字列
     const [slackResponse, setSlackResponse] = useState(false); // Slack回答希望フラグ - デフォルトはfalse(希望しない)
     const [studentId, setStudentId] = useState('');       // 学籍番号 - 初期値は空文字列
+    const [email, setEmail] = useState('');               // メールアドレス - 初期値は空文字列
 
     // ========== フォーム送信状態のステート管理 ==========
     const [submitting, setSubmitting] = useState(false);    // 送信処理中かどうかを示すフラグ
@@ -23,19 +24,20 @@ const QAForm = () => {
     const categories = ['自治会について', 'イベント', '学校生活', 'その他'];
 
     // Googleフォームの情報
-
-    const FORM_ID = '1FAIpQLSfbeK71d56M66oHMxmwLIK60s7AWr-NjYU-bGqxtUJwFKGwcg';
+    // 新しいGoogleフォームのID
+    const FORM_ID = '1FAIpQLSd5Q4IMuwV8JTu2tukNjaV0y-W5CCNYVdxY_-XuG1UOAynnOg';
 
     // Googleフォームの応答を受け取るエンドポイントURL
     const FORM_URL = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
 
     // Googleフォームの各フィールドに対応する識別子（entry.XXXXX）をマッピング
     const FORM_FIELDS = {
-        isPublic: 'entry.1062689994',      // 公開許可フィールド
-        category: 'entry.525336379',       // カテゴリーフィールド
-        question: 'entry.1439835033',      // 質問内容フィールド
-        slackResponse: 'entry.1183177482', // Slack回答希望フィールド
-        studentId: 'entry.1457824662'      // 学籍番号フィールド
+        email: 'entry.1747581536',        // メールアドレスフィールド
+        isPublic: 'entry.918172917',      // 公開許可フィールド 
+        category: 'entry.766510958',       // カテゴリーフィールド
+        question: 'entry.1192818453',      // 質問内容フィールド
+        slackResponse: 'entry.1783080539', // Slack回答希望フィールド
+        studentId: 'entry.855783561'      // 学籍番号フィールド
     };
 
     // ========== フォーム操作関連の関数 ==========
@@ -45,6 +47,7 @@ const QAForm = () => {
         setIsPublic(true);       // 公開許可を初期値(true)に戻す
         setSlackResponse(false); // Slack回答希望を初期値(false)に戻す
         setStudentId('');        // 学籍番号をクリア
+        setEmail('');            // メールアドレスをクリア
         // カテゴリーはリセットしない（ユーザーの次の質問も同じカテゴリーである可能性が高いため）
     };
 
@@ -57,6 +60,19 @@ const QAForm = () => {
         // 質問が空でないか確認（空白文字のみの場合も無効）
         if (!question.trim()) {
             setSubmitError('質問内容を入力してください。');
+            return; // エラーがあれば処理を中断
+        }
+
+        // メールアドレスが入力されているか確認
+        if (!email.trim()) {
+            setSubmitError('メールアドレスを入力してください。');
+            return; // エラーがあれば処理を中断
+        }
+
+        // 簡易的なメールアドレスの形式チェック
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setSubmitError('有効なメールアドレスを入力してください。');
             return; // エラーがあれば処理を中断
         }
 
@@ -79,9 +95,13 @@ const QAForm = () => {
             const urlParams = new URLSearchParams();
 
             // 各フォームフィールドにデータを追加
+            urlParams.append(FORM_FIELDS.email, email);
             // isPublicとslackResponseはブール値なので、「はい」「いいえ」に変換
             urlParams.append(FORM_FIELDS.isPublic, isPublic ? 'はい' : 'いいえ');
+
+            // カテゴリーをそのまま送信（元のコードと同様）
             urlParams.append(FORM_FIELDS.category, category);
+
             urlParams.append(FORM_FIELDS.question, question);
             urlParams.append(FORM_FIELDS.slackResponse, slackResponse ? 'はい' : 'いいえ');
 
@@ -92,13 +112,14 @@ const QAForm = () => {
 
             // デバッグ用に送信データをコンソールに出力
             // Object.fromEntries()でURLSearchParamsオブジェクトを通常のオブジェクトに変換
+            console.log('送信URL:', FORM_URL);
             console.log('送信データ:', Object.fromEntries(urlParams.entries()));
 
             // ========== Googleフォームにデータを送信 ==========
             // fetchを使用してPOSTリクエストを送信
             // mode: 'no-cors'を指定 - CORSエラーを回避するために必要
             // （Googleフォームへのクロスドメインリクエストになるため）
-            await fetch(FORM_URL, {
+            const response = await fetch(FORM_URL, {
                 method: 'POST',  // HTTP POSTメソッド
                 mode: 'no-cors', // CORS制約を回避
                 headers: {
@@ -112,7 +133,7 @@ const QAForm = () => {
             // ========== 送信成功時の処理 ==========
             // no-corsモードではレスポンスの内容を読み取れないため、
             // エラーがなければ成功したとみなす
-            console.log('フォーム送信完了');
+            console.log('フォーム送信完了', response);
             setSubmitSuccess(true);  // 成功フラグを立てる（成功メッセージを表示）
             resetForm();             // フォームをリセット
 
@@ -125,6 +146,7 @@ const QAForm = () => {
             // ========== エラー発生時の処理 ==========
             // エラー詳細をコンソールに出力（デバッグ用）
             console.error('送信エラー:', error);
+            console.error('送信エラー詳細:', error.message);
             // ユーザー向けのエラーメッセージを設定
             setSubmitError('送信中にエラーが発生しました。下部のリンクから直接Googleフォームで回答してください。');
         } finally {
@@ -167,6 +189,21 @@ const QAForm = () => {
 
             {/* フォーム要素 - onSubmitでhandleSubmit関数を呼び出し */}
             <form className="space-y-4" onSubmit={handleSubmit}>
+                {/* ===== メールアドレス入力フィールド ===== */}
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                        メールアドレス(回答ができたらこちらに通知します！) <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                        type="email"
+                        className="w-full p-2 border border-gray-300 rounded-lg"
+                        placeholder="your@email.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+
                 {/* ===== 公開許可チェックボックス ===== */}
                 <div className="space-y-2">
                     <div className="flex items-start">
@@ -178,7 +215,7 @@ const QAForm = () => {
                             onChange={(e) => setIsPublic(e.target.checked)}  // 変更時にステートを更新
                         />
                         <label htmlFor="isPublic" className="text-sm text-gray-700">
-                            情報学部自治会の公式サイトに質問の内容と回答を公開してもいいですか？
+                            情報学部自治会の公式サイトに質問の内容と回答を公開してもいいですか？ <span className="text-red-500">*</span>
                         </label>
                     </div>
                 </div>
@@ -186,12 +223,13 @@ const QAForm = () => {
                 {/* ===== カテゴリー選択ドロップダウン ===== */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                        カテゴリーを選択してください
+                        カテゴリーを選択してください <span className="text-red-500">*</span>
                     </label>
                     <select
                         className="w-full p-2 border border-gray-300 rounded-lg"
                         value={category}  // 現在選択されているカテゴリーをバインド
                         onChange={(e) => setCategory(e.target.value)}  // 選択変更時にステートを更新
+                        required
                     >
                         {/* categories配列からオプションを動的に生成 */}
                         {categories.map((cat) => (
@@ -203,7 +241,7 @@ const QAForm = () => {
                 {/* ===== 質問内容テキストエリア ===== */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                        質問内容
+                        質問内容 <span className="text-red-500">*</span>
                     </label>
                     <textarea
                         rows={5}  // テキストエリアの高さ（行数）
@@ -226,7 +264,7 @@ const QAForm = () => {
                             onChange={(e) => setSlackResponse(e.target.checked)}  // 変更時にステートを更新
                         />
                         <label htmlFor="slackResponse" className="text-sm text-gray-700">
-                            Slackでの回答を希望しますか
+                            Slackでの回答を希望しますか <span className="text-red-500">*</span>
                         </label>
                     </div>
 
@@ -239,7 +277,7 @@ const QAForm = () => {
                             <input
                                 type="text"
                                 className="w-full p-2 border border-gray-300 rounded-lg"
-                                placeholder="例: 25-999 近大"
+                                placeholder="例: 25-999 近大 太郎"
                                 value={studentId}  // 現在の学籍番号をバインド
                                 onChange={(e) => setStudentId(e.target.value)}  // 入力変更時にステートを更新
                                 required={slackResponse}  // 条件付き必須: slackResponseがtrueの場合のみ必須
