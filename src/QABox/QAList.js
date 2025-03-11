@@ -47,18 +47,22 @@ const QAList = () => {
                 const answerIndex = headers.findIndex(header =>
                     header.includes('自治会の回答')); // 回答が含まれるカラムを探す
                 const publicPermissionIndex = headers.findIndex(header =>
-                    header.includes('公開')); // 公開許可が含まれるカラムを探す
+                    header.includes('情報学部自治会の公式サイトに質問の内容と回答を公開してもいいですか')); // 旧公開許可フィールド
+                const publishPermissionIndex = headers.findIndex(header =>
+                    header.includes('回答を公開の許可')); // 新しい公開許可フィールド
                 const categoryIndex = headers.findIndex(header =>
                     header.includes('カテゴリー')); // カテゴリーが含まれるカラムを探す
-                //console.log(questionIndex, answerIndex, publicPermissionIndex, categoryIndex); // インデックスの確認（開発中のデバッグ用）
+                //console.log(questionIndex, answerIndex, publishPermissionIndex, categoryIndex); // インデックスの確認（開発中のデバッグ用）
                 // データを加工して必要な形式に整形
                 const filteredData = rows.slice(1)  // ヘッダー行（0番目）をスキップして残りのデータ行を取得
-                    // 公開許可が「はい」のデータのみをフィルタリング
+                    // 両方の公開許可条件を満たすデータのみをフィルタリング
                     .filter(row => {
-                        // publicPermissionIndexの位置にある値を取得し、小文字に変換
-                        // ?. はオプショナルチェーン演算子で、値がundefinedやnullの場合にエラーを防ぐ
-                        const permission = row[publicPermissionIndex]?.toLowerCase();
-                        return permission === 'はい'; // 「はい」のみを通過させる
+                        // 旧公開許可フィールドの値を取得
+                        const oldPermission = row[publicPermissionIndex]?.toLowerCase();
+                        // 新公開許可フィールドの値を取得
+                        const newPermission = row[publishPermissionIndex]?.toLowerCase();
+                        // 両方の条件を満たすもののみを通過させる
+                        return oldPermission === 'はい' && newPermission === 'true';
                     })
                     // 必要なデータだけを抽出して新しいオブジェクト形式に変換
                     .map((row, index) => {
