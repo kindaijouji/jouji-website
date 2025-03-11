@@ -4,7 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Home from "./Home";
 import About from "./About";
-import QABox from "./QABox";
+import QABox from "./QABox/QABox";
 import KdixFes from "./KdixFes";
 import ComingSoon from "./ComingSoon";
 
