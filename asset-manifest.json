@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/jouji-website/static/css/main.d71a1346.css",
+    "main.js": "/jouji-website/static/js/main.2257ed5d.js",
+    "index.html": "/jouji-website/index.html",
+    "main.d71a1346.css.map": "/jouji-website/static/css/main.d71a1346.css.map",
+    "main.2257ed5d.js.map": "/jouji-website/static/js/main.2257ed5d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d71a1346.css",
+    "static/js/main.2257ed5d.js"
+  ]
+}
