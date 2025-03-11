@@ -20,14 +20,7 @@ const QAList = () => {
     // ========== データ取得処理 ==========
     // コンポーネントが最初にマウントされたときに一度だけ実行される副作用
     useEffect(() => {
-        // GoogleスプレッドシートのID - 実際のデータソース
-        const SHEET_ID = '18idCuyfTZYeHhWg5pjjGPk3KVuxO8LYsaiy35VInQXY';
-        // 使用するシート名
-        const SHEET_NAME = 'Sheet1';
-
-        // スプレッドシートのデータをCSV形式で取得するためのURL
-        // gviz/tq?tqx=out:csvはCSV形式でデータを取得するためのGoogleスプレッドシートのAPIパラメーター
-        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${SHEET_NAME}`;
+        const url = process.env.REACT_APP_URL;
 
         // fetchAPIを使ってURLからデータを非同期で取得
         fetch(url)

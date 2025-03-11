@@ -18,6 +18,7 @@ function App() {
         <Route path="/qabox" element={<QABox />} />
         <Route path="/kdixfes" element={<KdixFes />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
+        <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
     </Router>
