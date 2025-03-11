@@ -27,8 +27,8 @@ const FooterLinks = () => {
         <div>
           <h3 className="text-sm font-bold mb-3">質問箱</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="text-gray-400 hover:text-white no-underline transition-colors">質問フォーム</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white no-underline transition-colors">質問と回答</a></li>
+            <li><a href="/contact" className="text-gray-400 hover:text-white no-underline transition-colors">質問フォーム</a></li>
+            <li><a href="/contact" className="text-gray-400 hover:text-white no-underline transition-colors">質問と回答</a></li>
           </ul>
         </div>
       </div>
