@@ -8,9 +8,9 @@ const FooterLinks = () => {
         <div>
           <h3 className="text-sm font-bold mb-3">ABOUT</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="text-gray-400 hover:text-white no-underline transition-colors">自治会について</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white no-underline transition-colors">年間予定</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white no-underline transition-colors">過去イベント一覧</a></li>
+            <li><a href="/contact" className="text-gray-400 hover:text-white no-underline transition-colors">自治会について</a></li>
+            <li><a href="/contact" className="text-gray-400 hover:text-white no-underline transition-colors">年間予定</a></li>
+            <li><a href="/contact" className="text-gray-400 hover:text-white no-underline transition-colors">過去イベント一覧</a></li>
           </ul>
         </div>
 
@@ -18,8 +18,8 @@ const FooterLinks = () => {
         <div>
           <h3 className="text-sm font-bold mb-3">情報学部祭</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="text-gray-400 hover:text-white no-underline transition-colors">情報学部祭とは</a></li>
-            <li><a href="#" className="text-gray-400 hover:text-white no-underline transition-colors">過去の企画</a></li>
+            <li><a href="/contact" className="text-gray-400 hover:text-white no-underline transition-colors">情報学部祭とは</a></li>
+            <li><a href="/contact" className="text-gray-400 hover:text-white no-underline transition-colors">過去の企画</a></li>
           </ul>
         </div>
 
