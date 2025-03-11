@@ -1,8 +1,8 @@
 // QABox.js
-import React, { useState } from 'react';
+import React from 'react';
 import QAForm from './QAForm';
 import QAList from './QAList';
-import QABoxHeader, { HEADER_STYLES } from './QABoxHeader';
+import QABoxHeader from './QABoxHeader';
 
 const QABox = () => {
 
