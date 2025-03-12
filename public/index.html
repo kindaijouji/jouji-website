@@ -1,29 +1,38 @@
-<!DOCTYPE html> <!-- HTML5文書であることを宣言 -->
-<html lang="ja"> <!-- 日本語のコンテンツであることを示す（jpは誤り、jaが正しい） -->
+<!DOCTYPE html>
+<html lang="ja">
 
-<head> <!-- ヘッダー部分の開始 -->
-  <meta charset="utf-8" /> <!-- 文字エンコーディングをUTF-8に設定 -->
-  <link rel="icon" href="%PUBLIC_URL%/jouji_icon.ico" /> <!-- タブに表示されるファビコンを設定 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- レスポンシブデザイン用のビューポート設定 -->
-  <meta name="theme-color" content="#000000" /> <!-- モバイルブラウザのテーマカラーを設定 -->
-  <meta name="description" content="近畿大学情報学部自治会の公式Webサイトです" /> <!-- サイトの説明文（SEO対策） -->
-  <link rel="apple-touch-icon" href="%PUBLIC_URL%/jouji192.jpg" /> <!-- iOSデバイスでホーム画面に追加した際のアイコン -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> <!-- PWA用のマニフェストファイルを読み込み -->
-  <title>近畿大学情報学部自治会</title> <!-- ブラウザのタブに表示されるタイトル -->
-  <!-- Google tag (gtag.js) -->
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/jouji_icon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- SEO対策：メタディスクリプションの拡充 -->
+  <meta name="description" content="近畿大学情報学部自治会の公式Webサイトです。イベント、お知らせなど、情報学部の学生生活に関する最新情報を発信しています。" />
+
+  <!-- SEO対策：メタキーワードの追加 -->
+  <meta name="keywords" content="近畿大学,近大,情報学部,自治会,学友会,近畿大学情報学部,近畿大学情報学部自治会,学部行事,キャンパスライフ" />
+
+  <!-- SEO対策：正規URLの指定 -->
+  <link rel="canonical" href="https://kindaijouji.github.io/jouji-website/" />
+  <!-- SEO対策：タイトルタグの最適化 -->
+  <title>近畿大学情報学部自治会 | 公式ウェブサイト | イベント・お知らせ</title>
+
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-37SVYLH9E4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-37SVYLH9E4');
   </script>
+
+
 </head>
 
-<body> <!-- ボディ部分の開始 -->
-  <noscript>このサイトの閲覧にはJavaScriptを有効にする必要があります。</noscript> <!-- JavaScript無効時のメッセージ -->
-  <div id="root"></div> <!-- Reactアプリケーションのマウントポイント -->
+<body>
+  <noscript>このサイトの閲覧にはJavaScriptを有効にする必要があります。</noscript>
+  <div id="root"></div>
 </body>
 
 </html>
