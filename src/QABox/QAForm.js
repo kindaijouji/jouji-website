@@ -24,13 +24,15 @@ const QAForm = () => {
     const categories = ['自治会について', 'イベント', '学校生活', 'その他'];
 
     // Googleフォームの情報
-    // 新しいGoogleフォームのID
-    const FORM_ID = '1FAIpQLSd5Q4IMuwV8JTu2tukNjaV0y-W5CCNYVdxY_-XuG1UOAynnOg';
+    // 新しいGoogleフォームのID - URLから更新
+    const FORM_ID = '1FAIpQLSfgHR9pWEZYvBzbLeA8QXDgdSEFq355n2rS4r6bSThJIfEJMQ';
 
-    // Googleフォームの応答を受け取るエンドポイントURL
+    // Googleフォームの応答を受け取るエンドポイントURL - ID部分を更新
     const FORM_URL = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
 
     // Googleフォームの各フィールドに対応する識別子（entry.XXXXX）をマッピング
+    // 注意: 新しいフォームではこれらのフィールドIDが変わっている可能性がありますが、
+    // 明示的な情報がないため、既存の値を保持します
     const FORM_FIELDS = {
         email: 'entry.1747581536',        // メールアドレスフィールド
         isPublic: 'entry.918172917',      // 公開許可フィールド 
