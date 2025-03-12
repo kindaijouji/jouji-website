@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronRight, X, Users, DoorOpen, Trophy } from 'lucide-react';
+import { ChevronRight, X, Calendar, Users, Trophy, DoorOpen } from 'lucide-react';
 
 const HomePastEvent = () => {
   // 過去のイベントデータ
@@ -7,25 +7,25 @@ const HomePastEvent = () => {
     {
       title: '学部長会談',
       date: '2024.08.01',
-      icon: <Users size={24} />,
-      color: 'bg-gray-100',
-      iconColor: 'text-gray-500',
+      icon: <Users size={28} />,
+      color: 'bg-gradient-to-br from-blue-400 to-blue-600',
+      iconColor: 'text-blue-500',
       details: 'この会談は年に1度開催され、学部生が学部へ抱えている不満や要望を伝える場となっております。学部長代理や学部長補佐などの教授の方々、学生センターや学生部の職員の方々へ学生の声をお届けいたしました。'
     },
     {
       title: '新入生歓迎会',
       date: '2024.04.03',
-      icon: <DoorOpen size={24} />,
-      color: 'bg-gray-100',
-      iconColor: 'text-gray-500',
+      icon: <DoorOpen size={28} />,
+      color: 'bg-gradient-to-br from-green-400 to-green-600',
+      iconColor: 'text-green-500',
       details: '令和6年度にご入学された新入生の皆様を歓迎するイベントでございます。情報学部自治会のご紹介やE館の施設案内、そして授業に関するご説明をさせていただきました。また、ビンゴ大会も開催いたしました。'
     },
     {
       title: 'eスポーツイベント',
       date: '2024.10.14',
-      icon: <Trophy size={24} />,
-      color: 'bg-gray-100',
-      iconColor: 'text-gray-500',
+      icon: <Trophy size={28} />,
+      color: 'bg-gradient-to-br from-purple-400 to-purple-600',
+      iconColor: 'text-purple-500',
       details: 'esports Arenaで大乱闘スマッシュブラザーズの大会を開催いたしました。大会では皆様が楽しめるようにダブルエリミネーションと呼ばれる負けても続行が可能な形式を取りました。'
     }
   ];
@@ -35,10 +35,15 @@ const HomePastEvent = () => {
 
   // 詳細表示の切り替え関数
   const toggleDetails = (index) => {
-    setExpandedEvents(prev => ({
-      ...prev,
-      [index]: !prev[index]
-    }));
+    setExpandedEvents({
+      // すべてのイベントを閉じた状態にリセット
+      ...Object.keys(expandedEvents).reduce((acc, key) => {
+        acc[key] = false;
+        return acc;
+      }, {}),
+      // クリックされたイベントのみトグル
+      [index]: !expandedEvents[index]
+    });
   };
 
   return (
@@ -51,55 +56,63 @@ const HomePastEvent = () => {
           </h2>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="flex flex-wrap -mx-4">
           {pastEvents.map((event, index) => (
-            <div key={index} className="group bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-              {/* 背景部分 */}
-              <div className={`${event.color} h-32 relative overflow-hidden`}>
-                <div className="absolute inset-0 opacity-20 bg-gradient-to-br from-white to-transparent"></div>
+            <div key={index} className="w-full md:w-1/3 px-4 mb-8">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                {/* カラフルなヘッダー部分 */}
+                <div className={`${event.color} h-24 flex items-center justify-center relative overflow-hidden`}>
+                  <div className="absolute right-0 bottom-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-8 -mb-8"></div>
+                  <div className="absolute left-0 top-0 w-16 h-16 bg-white opacity-10 rounded-full -ml-4 -mt-4"></div>
+                </div>
                 
-                {/* アイコンを左下に配置 */}
-                <div className="absolute bottom-4 left-4">
-                  <div className={`${event.iconColor} bg-white p-3 rounded-full shadow-md`}>
-                    {event.icon}
+                {/* アイコン部分（ヘッダーとコンテンツにまたがる） */}
+                <div className="relative -mt-10 mx-6">
+                  <div className="bg-white p-4 rounded-full shadow-lg inline-block">
+                    <div className={`${event.iconColor}`}>
+                      {event.icon}
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              <div className="px-6 py-5">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-bold text-lg">{event.title}</h3>
-                  <span className="text-sm text-gray-500 font-medium border-b border-gray-200 pb-1">{event.date}</span>
-                </div>
                 
-                {/* ボタンデザイン */}
-                <button 
-                  onClick={() => toggleDetails(index)} 
-                  className={`w-full mt-2 px-4 py-2 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-300 ${
-                    expandedEvents[index] 
-                      ? "bg-gray-100 text-gray-800 hover:bg-gray-200" 
-                      : "bg-red-400 text-white hover:bg-red-500"
-                  }`}
-                >
-                  {expandedEvents[index] ? (
-                    <>
-                      <X size={16} className="mr-2" />
-                      <span>閉じる</span>
-                    </>
-                  ) : (
-                    <>
-                      <ChevronRight size={16} className="mr-2" />
-                      <span>詳しく見る</span>
-                    </>
+                <div className="px-6 pb-6 pt-2">
+                  <div className="flex flex-col mb-5">
+                    <h3 className="font-bold text-xl mb-2">{event.title}</h3>
+                    <div className="flex items-center text-sm text-gray-500">
+                      <Calendar size={14} className="mr-1" />
+                      <span>{event.date}</span>
+                    </div>
+                  </div>
+                  
+                  {/* 詳細表示エリア（開かれている場合のみ表示） */}
+                  {expandedEvents[index] && (
+                    <div className="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                      <p>{event.details}</p>
+                    </div>
                   )}
-                </button>
-                
-                {/* 詳細表示エリア */}
-                {expandedEvents[index] && (
-                  <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
-                    <p>{event.details}</p>
-                  </div>
-                )}
+                  
+                  {/* ボタン部分 */}
+                  <button 
+                    onClick={() => toggleDetails(index)} 
+                    className={`w-full px-5 py-3 rounded-lg flex items-center justify-center text-sm font-medium transition-all duration-300 ${
+                      expandedEvents[index] 
+                        ? "bg-gray-100 text-gray-800 hover:bg-gray-200" 
+                        : "bg-red-400 text-white hover:bg-red-500 shadow-md hover:shadow-lg"
+                    }`}
+                  >
+                    {expandedEvents[index] ? (
+                      <>
+                        <X size={16} className="mr-2" />
+                        <span>閉じる</span>
+                      </>
+                    ) : (
+                      <>
+                        <ChevronRight size={16} className="mr-2" />
+                        <span>詳しく見る</span>
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           ))}
