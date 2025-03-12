@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-import { ChevronRight, X, Calendar, Users, Trophy, DoorOpen } from 'lucide-react';
+import { ArrowRight, ChevronRight, X, Calendar, Users, Trophy, DoorOpen } from 'lucide-react';
 
 const HomePastEvent = () => {
   // 過去のイベントデータ
   const pastEvents = [
-    {
-      title: '情報学部祭 2024',
-      date: '2024.07.15',
-      image: 'festival.jpg'
-    },
     {
       title: '学部長会談',
       date: '2024.08.01',
@@ -119,19 +114,15 @@ const HomePastEvent = () => {
                   </button>
                 </div>
               </div>
-              <button className="text-black group-hover:underline inline-flex items-center">
-                詳しく見る
-                <ArrowRight size={16} className="ml-1" />
-              </button>
             </div>
           ))}
         </div>
-        <div className="text-center mt-12">
+        {/* <div className="text-center mt-12">
           <button className="border-2 border-black text-black px-8 py-3 inline-flex items-center group hover:bg-black hover:text-white transition-all">
             イベント一覧を見る
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
