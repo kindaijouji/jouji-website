@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/jouji-website/static/css/main.9611dc00.css",
-    "main.js": "/jouji-website/static/js/main.170acf5f.js",
+    "main.js": "/jouji-website/static/js/main.e0a091ca.js",
     "index.html": "/jouji-website/index.html",
     "main.9611dc00.css.map": "/jouji-website/static/css/main.9611dc00.css.map",
-    "main.170acf5f.js.map": "/jouji-website/static/js/main.170acf5f.js.map"
+    "main.e0a091ca.js.map": "/jouji-website/static/js/main.e0a091ca.js.map"
   },
   "entrypoints": [
     "static/css/main.9611dc00.css",
-    "static/js/main.170acf5f.js"
+    "static/js/main.e0a091ca.js"
   ]
 }
