@@ -1,5 +1,5 @@
 import React from 'react';
-import { Umbrella, Clock, Users, AlertCircle } from 'lucide-react';
+import { Umbrella, AlertCircle } from 'lucide-react';
 
 function ComingSoon() {
     return (
