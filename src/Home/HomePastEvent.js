@@ -5,6 +5,11 @@ const HomePastEvent = () => {
   // 過去のイベントデータ
   const pastEvents = [
     {
+      title: '情報学部祭 2024',
+      date: '2024.07.15',
+      image: 'festival.jpg'
+    },
+    {
       title: '学部長会談',
       date: '2024.08.01',
       icon: <Users size={28} />,
@@ -47,7 +52,7 @@ const HomePastEvent = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-50 to-gray-100">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold relative inline-block">
@@ -114,8 +119,18 @@ const HomePastEvent = () => {
                   </button>
                 </div>
               </div>
+              <button className="text-black group-hover:underline inline-flex items-center">
+                詳しく見る
+                <ArrowRight size={16} className="ml-1" />
+              </button>
             </div>
           ))}
+        </div>
+        <div className="text-center mt-12">
+          <button className="border-2 border-black text-black px-8 py-3 inline-flex items-center group hover:bg-black hover:text-white transition-all">
+            イベント一覧を見る
+            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </div>
     </section>
