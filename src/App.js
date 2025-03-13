@@ -5,7 +5,7 @@ import Footer from "./Footer/Footer";
 import Home from "./Home/Home";
 import About from "./About/About";
 import QABox from "./QABox/QABox";
-import KdixFes from "./KdixFes";
+import KdixFes from "./KdixFes/KdixFes";
 import ComingSoon from "./ComingSoon";
 
 function App() {
