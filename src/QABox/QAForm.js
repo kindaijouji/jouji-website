@@ -25,7 +25,7 @@ const QAForm = () => {
 
     // Googleフォームの情報
     // 新しいGoogleフォームのID - URLから更新
-    const FORM_ID = '1FAIpQLSfgHR9pWEZYvBzbLeA8QXDgdSEFq355n2rS4r6bSThJIfEJMQ';
+    const FORM_ID = '1FAIpQLSdmAipc4uzaq7DAm6G1f1cxhjA7NX-AfXKche-EtJcLU1PpRg';
 
     // Googleフォームの応答を受け取るエンドポイントURL - ID部分を更新
     const FORM_URL = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
