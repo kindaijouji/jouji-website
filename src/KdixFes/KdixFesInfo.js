@@ -1,5 +1,5 @@
 import React from 'react'
-
+import kdiximg from '../assets/images/kdiximg.jpg'
 const KdixFesInfo = () => {
     return (
         <section className="py-20 bg-white">
@@ -11,7 +11,13 @@ const KdixFesInfo = () => {
                             情報学部祭 (KDIX Festival) は、近畿大学情報学部自治会の学生が主体となって<br></br>開催する情報学部で学ぶ知識と、毎年異なるテーマを組み合わせ、<br></br>1年間を通して実現するイベントです。
                         </p>
                     </div>
-                    <div className="bg-gray-100 h-80 rounded-lg"></div>
+                    <div className="bg-gray-100 h-80 rounded-lg">
+                        <img
+                            src={kdiximg}
+                            alt="情報学部祭の様子"
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
                 </div>
             </div>
         </section>

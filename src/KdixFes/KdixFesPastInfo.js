@@ -1,5 +1,6 @@
 import React from 'react'
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, AlertCircle } from 'lucide-react';
+
 const KdixFesPastInfo = () => {
     return (
         <section className="py-20 bg-white">
@@ -17,16 +18,21 @@ const KdixFesPastInfo = () => {
                         <div className="p-6">
                             <div className="flex justify-between items-center mb-4">
                                 <h3 className="text-xl font-bold">KDIX Festival 2024</h3>
-                                <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">最新</span>
+
                             </div>
                             <div className="mb-6">
-                                <p className="text-gray-600 mb-2"><span className="font-medium">テーマ:</span> Digital Evolution</p>
-                                <p className="text-sm text-gray-500 bg-gray-50 p-2 rounded-md">初の2日間開催</p>
+                                <p className="text-gray-600 mb-2"><span className="font-medium">企画名:</span> デジタルフォンティア</p>
+                                <p className="text-sm text-gray-500 bg-gray-50 p-2 rounded-md">WebアプリとUnityを使用した魔法RPGゲームの展示</p>
                             </div>
-                            <button className="w-full bg-gray-50 hover:bg-gray-100 text-gray-800 py-2 px-4 rounded-lg transition-colors flex items-center justify-center group-hover:bg-blue-50">
+                            <a
+                                href="https://kdixfes.com/jousai_home/jousai_home.html"
+                                className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors flex items-center justify-center"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 詳しく見る
                                 <ChevronRight size={16} className="ml-1" />
-                            </button>
+                            </a>
                         </div>
                     </div>
 
@@ -41,16 +47,15 @@ const KdixFesPastInfo = () => {
                         <div className="p-6">
                             <div className="flex justify-between items-center mb-4">
                                 <h3 className="text-xl font-bold">KDIX Festival 2023</h3>
-                                <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">記録更新</span>
                             </div>
                             <div className="mb-6">
-                                <p className="text-gray-600 mb-2"><span className="font-medium">テーマ:</span> Connect the Future</p>
-                                <p className="text-sm text-gray-500 bg-gray-50 p-2 rounded-md">来場者数1000人突破</p>
+                                <p className="text-gray-600 mb-2"><span className="font-medium">企画名:</span>電脳縁日</p>
+                                <p className="text-sm text-gray-500 bg-gray-50 p-2 rounded-md">縁日をモチーフとしたゲームの展示</p>
                             </div>
-                            <button className="w-full bg-gray-50 hover:bg-gray-100 text-gray-800 py-2 px-4 rounded-lg transition-colors flex items-center justify-center group-hover:bg-green-50">
-                                詳しく見る
-                                <ChevronRight size={16} className="ml-1" />
-                            </button>
+                            <div className="w-full bg-gray-200 text-gray-500 py-2 px-4 rounded-lg flex items-center justify-center cursor-not-allowed">
+                                <AlertCircle size={16} className="mr-2" />
+                                詳細情報がありません
+                            </div>
                         </div>
                     </div>
 
@@ -65,16 +70,15 @@ const KdixFesPastInfo = () => {
                         <div className="p-6">
                             <div className="flex justify-between items-center mb-4">
                                 <h3 className="text-xl font-bold">KDIX Festival 2022</h3>
-                                <span className="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full">アーカイブ</span>
                             </div>
                             <div className="mb-6">
-                                <p className="text-gray-600 mb-2"><span className="font-medium">テーマ:</span> New Normal Tech</p>
-                                <p className="text-sm text-gray-500 bg-gray-50 p-2 rounded-md">初のハイブリッド開催</p>
+                                <p className="text-gray-600 mb-2"><span className="font-medium">テーマ:</span> 脱出ゲーム</p>
+                                <p className="text-sm text-gray-500 bg-gray-50 p-2 rounded-md">情報がありませんでした🙇</p>
                             </div>
-                            <button className="w-full bg-gray-50 hover:bg-gray-100 text-gray-800 py-2 px-4 rounded-lg transition-colors flex items-center justify-center group-hover:bg-orange-50">
-                                詳しく見る
-                                <ChevronRight size={16} className="ml-1" />
-                            </button>
+                            <div className="w-full bg-gray-200 text-gray-500 py-2 px-4 rounded-lg flex items-center justify-center cursor-not-allowed">
+                                <AlertCircle size={16} className="mr-2" />
+                                詳細情報がありません
+                            </div>
                         </div>
                     </div>
                 </div>
