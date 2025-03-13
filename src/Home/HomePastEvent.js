@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, ChevronRight, X, Calendar, Users, Trophy, DoorOpen } from 'lucide-react';
+import { ChevronRight, X, Calendar, Users, Trophy, DoorOpen } from 'lucide-react';
 
 const HomePastEvent = () => {
   // 過去のイベントデータ
@@ -55,7 +55,7 @@ const HomePastEvent = () => {
             <span className="absolute bottom-1 left-0 w-full h-3 bg-red-200 opacity-50 z-0"></span>
           </h2>
         </div>
-        
+
         <div className="flex flex-wrap -mx-4">
           {pastEvents.map((event, index) => (
             <div key={index} className="w-full md:w-1/3 px-4 mb-8">
@@ -65,7 +65,7 @@ const HomePastEvent = () => {
                   <div className="absolute right-0 bottom-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-8 -mb-8"></div>
                   <div className="absolute left-0 top-0 w-16 h-16 bg-white opacity-10 rounded-full -ml-4 -mt-4"></div>
                 </div>
-                
+
                 {/* アイコン部分（ヘッダーとコンテンツにまたがる） */}
                 <div className="relative -mt-10 mx-6">
                   <div className="bg-white p-4 rounded-full shadow-lg inline-block">
@@ -74,7 +74,7 @@ const HomePastEvent = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="px-6 pb-6 pt-2">
                   <div className="flex flex-col mb-5">
                     <h3 className="font-bold text-xl mb-2">{event.title}</h3>
@@ -83,22 +83,21 @@ const HomePastEvent = () => {
                       <span>{event.date}</span>
                     </div>
                   </div>
-                  
+
                   {/* 詳細表示エリア（開かれている場合のみ表示） */}
                   {expandedEvents[index] && (
                     <div className="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
                       <p>{event.details}</p>
                     </div>
                   )}
-                  
+
                   {/* ボタン部分 */}
-                  <button 
-                    onClick={() => toggleDetails(index)} 
-                    className={`w-full px-5 py-3 rounded-lg flex items-center justify-center text-sm font-medium transition-all duration-300 ${
-                      expandedEvents[index] 
-                        ? "bg-gray-100 text-gray-800 hover:bg-gray-200" 
+                  <button
+                    onClick={() => toggleDetails(index)}
+                    className={`w-full px-5 py-3 rounded-lg flex items-center justify-center text-sm font-medium transition-all duration-300 ${expandedEvents[index]
+                        ? "bg-gray-100 text-gray-800 hover:bg-gray-200"
                         : "bg-red-400 text-white hover:bg-red-500 shadow-md hover:shadow-lg"
-                    }`}
+                      }`}
                   >
                     {expandedEvents[index] ? (
                       <>
