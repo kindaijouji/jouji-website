@@ -15,8 +15,8 @@ const QABox = () => {
             qaformRef.current.scrollIntoView();
         } else if (location.hash === '#qa-list' && qalistRef.current) {
             qalistRef.current.scrollIntoView();
-        } 
-    }, []);
+        }
+    }, [location.hash]);
 
     return (
         <div className="min-h-screen pt-16">
