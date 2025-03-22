@@ -16,9 +16,7 @@ const HomeCurrentEvent = () => {
           <div className="border border-black rounded-lg p-4 sm:p-6 md:p-8 hover:shadow-lg transition-all">
             <div className="grid md:grid-cols-2 gap-4 sm:gap-6 items-center">
               <div>
-                <span className="inline-block bg-black text-white px-3 sm:px-4 py-1 text-xs sm:text-sm mb-3 sm:mb-4 rounded">
-                  参加者募集中
-                </span>
+
                 <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">新入生歓迎会</h3>
                 {/* 紹介文 */}
                 <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
@@ -46,7 +44,7 @@ const HomeCurrentEvent = () => {
                     <MapPin className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
                     <div className="ml-3">
                       <p className="text-gray-900 font-medium text-sm">場所</p>
-                      <p className="text-gray-600 text-sm sm:text-base">未定</p>
+                      <p className="text-gray-600 text-sm sm:text-base">E103</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -57,16 +55,12 @@ const HomeCurrentEvent = () => {
                     </div>
                   </div>
                 </div>
-                {/* <button className="bg-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg inline-flex items-center group hover:bg-gray-800 transition-all text-sm sm:text-base">
-                  参加申し込み
-                  <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-                </button> */}
+
               </div>
               <div className="mt-4 md:mt-0 rounded-lg overflow-hidden">
-                {/*  */}
-                <img 
-                  src={`${process.env.PUBLIC_URL}/img/shinkan.png`} 
-                  alt="新入生歓迎会" 
+                <img
+                  src={`${process.env.PUBLIC_URL}/img/shinkan.png`}
+                  alt="新入生歓迎会"
                   className="w-full h-40 sm:h-48 md:h-64 object-cover"
                 />
               </div>
@@ -78,7 +72,7 @@ const HomeCurrentEvent = () => {
             <div className="grid md:grid-cols-2 gap-4 sm:gap-6 items-center">
               <div>
                 <span className="inline-block bg-black text-white px-3 sm:px-4 py-1 text-xs sm:text-sm mb-3 sm:mb-4 rounded">
-                  部員募集中
+                  募集開始前
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">新入部員採用</h3>
                 <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
@@ -103,15 +97,14 @@ const HomeCurrentEvent = () => {
                     </div>
                   </div>
                 </div>
-                <button className="bg-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg inline-flex items-center group hover:bg-gray-800 transition-all text-sm sm:text-base">
-                  応募フォーム
-                  <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                <button disabled className="bg-gray-400 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg inline-flex items-center text-sm sm:text-base cursor-not-allowed">
+                  応募フォームは4月2日より公開します
                 </button>
               </div>
               <div className="mt-4 md:mt-0 rounded-lg overflow-hidden">
-                <img 
-                  src={`${process.env.PUBLIC_URL}/img/buinsaiyou.png`} 
-                  alt="新入部員採用" 
+                <img
+                  src={`${process.env.PUBLIC_URL}/img/buinsaiyou.png`}
+                  alt="新入部員採用"
                   className="w-full aspect-video object-cover"
                 />
               </div>
