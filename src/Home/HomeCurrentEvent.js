@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowRight, Calendar, MapPin, Users, Clock } from 'lucide-react';
-
+import { Calendar, MapPin, Users, Clock } from 'lucide-react';
+//ArrowRight部員採用を開始したら追加する
 const HomeCurrentEvent = () => {
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-white">
