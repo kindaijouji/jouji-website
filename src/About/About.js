@@ -17,10 +17,10 @@ const About = () => {
             pastEventsRef.current.scrollIntoView();
         } else if (location.hash === '#annual-event' && annualEventRef.current) {
             annualEventRef.current.scrollIntoView();
-        } else if (location.hash === '#main-visual' && mianVisualRef.current) { 
+        } else if (location.hash === '#main-visual' && mianVisualRef.current) {
             mianVisualRef.current.scrollIntoView();
         }
-    }, []);
+    }, [location.hash]);
 
     return (
         <div className="min-h-screen pt-16">

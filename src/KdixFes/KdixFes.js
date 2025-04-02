@@ -15,8 +15,8 @@ const KdixFes = () => {
             kdixfesinfoRef.current.scrollIntoView();
         } else if (location.hash === '#past-fes' && pastfesRef.current) {
             pastfesRef.current.scrollIntoView();
-        } 
-    }, []);
+        }
+    }, [location.hash]);
 
     return (
         <div className="min-h-screen pt-16">
