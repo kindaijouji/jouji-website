@@ -96,9 +96,12 @@ const HomeCurrentEvent = () => {
                       <p className="text-gray-600 text-sm sm:text-base">情報学部の新入生の方々</p>
                     </div>
                   </div>
+
+                {/* 応募フォームリンク */}
                 </div>
-                <button disabled className="bg-gray-400 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg inline-flex items-center text-sm sm:text-base cursor-not-allowed">
-                  応募フォームは4月2日より公開します
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg inline-flex items-center text-sm sm:text-base"
+                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSd6ssyNGWPiR2yUwtkidelK5rd4aI4fP3xyJo5KRL1ldY9Wxg/viewform?usp=dialog', '_blank')}>
+                  応募フォームはこちら
                 </button>
               </div>
               <div className="mt-4 md:mt-0 rounded-lg overflow-hidden">
