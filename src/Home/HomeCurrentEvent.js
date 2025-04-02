@@ -103,9 +103,10 @@ const HomeCurrentEvent = () => {
                     </div>
                   </div>
                 </div>
-                <button className="bg-black text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg inline-flex items-center group hover:bg-gray-800 transition-all text-sm sm:text-base">
-                  応募フォーム
-                  <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                {/* 応募フォームリンク */}
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg inline-flex items-center text-sm sm:text-base"
+                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSd6ssyNGWPiR2yUwtkidelK5rd4aI4fP3xyJo5KRL1ldY9Wxg/viewform?usp=dialog', '_blank')}>
+                  応募フォームはこちら
                 </button>
               </div>
               <div className="mt-4 md:mt-0 rounded-lg overflow-hidden">
