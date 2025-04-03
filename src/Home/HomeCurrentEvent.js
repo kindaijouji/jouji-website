@@ -13,12 +13,12 @@ const HomeCurrentEvent = () => {
 
         <div className="grid gap-6 sm:gap-8">
           {/* 新入生歓迎会 */}
-          <div className="border border-black rounded-lg p-4 sm:p-6 md:p-8 hover:shadow-lg transition-all">
+          {/* <div className="border border-black rounded-lg p-4 sm:p-6 md:p-8 hover:shadow-lg transition-all">
             <div className="grid md:grid-cols-2 gap-4 sm:gap-6 items-center">
               <div>
 
                 <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">新入生歓迎会</h3>
-                {/* 紹介文 */}
+                
                 <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
                   新入生の皆さんを歓迎するイベントです！
                   情報学部の授業や情報学部自治会についてのご紹介をさせていただきます！
@@ -65,7 +65,7 @@ const HomeCurrentEvent = () => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* 新入部員採用 */}
           <div className="border border-black rounded-lg p-4 sm:p-6 md:p-8 hover:shadow-lg transition-all">
