@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, MapPin, Users, Clock } from 'lucide-react';
+import { Calendar,  Users} from 'lucide-react';
 //ArrowRight部員採用を開始したら追加する
 const HomeCurrentEvent = () => {
   return (
@@ -10,7 +10,6 @@ const HomeCurrentEvent = () => {
           <span className="relative z-10">開催中のイベント</span>
           <span className="absolute bottom-1 left-0 w-full h-3 bg-red-200 opacity-50 z-0"></span>
         </h2>
-
         <div className="grid gap-6 sm:gap-8">
           {/* 新入生歓迎会 */}
           {/* <div className="border border-black rounded-lg p-4 sm:p-6 md:p-8 hover:shadow-lg transition-all">
@@ -72,7 +71,7 @@ const HomeCurrentEvent = () => {
             <div className="grid md:grid-cols-2 gap-4 sm:gap-6 items-center">
               <div>
                 <span className="inline-block bg-black text-white px-3 sm:px-4 py-1 text-xs sm:text-sm mb-3 sm:mb-4 rounded">
-                  募集開始前
+                  募集中
                 </span>
                 <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">新入部員採用</h3>
                 <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
