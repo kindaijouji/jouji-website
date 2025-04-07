@@ -13,7 +13,7 @@ const HomePastEvent = () => {
       details: 'この会談は年に1度開催され、学部生が学部へ抱えている不満や要望を伝える場となっております。学部長代理や学部長補佐などの教授の方々、学生センターや学生部の職員の方々へ学生の声をお届けいたしました。'
     },
     {
-      title: '新入生歓迎会',
+      title: 'R6年度新入生歓迎会',
       date: '2024.04.03',
       icon: <DoorOpen size={28} />,
       color: 'bg-gradient-to-br from-green-400 to-green-600',
@@ -27,6 +27,14 @@ const HomePastEvent = () => {
       color: 'bg-gradient-to-br from-purple-400 to-purple-600',
       iconColor: 'text-purple-500',
       details: 'esports Arenaで大乱闘スマッシュブラザーズの大会を開催いたしました。大会では皆様が楽しめるようにダブルエリミネーションと呼ばれる負けても続行が可能な形式を取りました。'
+    },
+    {
+      title: 'R7年度新入生歓迎会',
+      date: '2025.04.02',
+      icon: <DoorOpen size={28} />,
+      color: 'bg-gradient-to-br from-red-400 to-red-600',
+      iconColor: 'text-red-500',
+      details: '令和7年度にご入学されました新入生の皆様を歓迎するイベントでございます。情報学部自治会の紹介、E館の施設案内、そして授業に関する概要説明などをさせていただきました。最後は、様々な景品が揃ったビンゴ大会を開催させていただき、昨年を上回る盛り上がりを見せました。'
     }
   ];
 
