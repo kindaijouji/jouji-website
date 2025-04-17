@@ -1,5 +1,4 @@
 import React from 'react';
-import PokePoke from './PokePoke';
 //ArrowRight部員採用を開始したら追加する
 const HomeCurrentEvent = () => {
   return (
