@@ -18,7 +18,7 @@ const Header = () => {
         { id: 'about', name: 'About' },
         { id: 'kdixfes', name: '情報学部祭' },
         { id: 'qabox', name: '質問箱' },
-        { id: 'coming-soon', name: 'Coming Soon' }
+        { id: 'coming-soon', name: '傘の貸し出し' }
     ];
 
     return (
