@@ -1,5 +1,6 @@
 import React from 'react';
 import KasaKasi from './KasaKasi';
+import GakubuchouKaidan from './Gakubucho';
 //ArrowRight部員採用を開始したら追加する
 const HomeCurrentEvent = () => {
   return (
@@ -11,6 +12,8 @@ const HomeCurrentEvent = () => {
           <span className="absolute bottom-1 left-0 w-full h-3 bg-red-200 opacity-50 z-0"></span>
         </h2>
         {/* イベント一覧 */}
+        <GakubuchouKaidan />
+        <div className='my-8' />
         <KasaKasi />
       </div>
 
