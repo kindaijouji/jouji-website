@@ -2,13 +2,13 @@ import React from 'react';
 // import HomeHeroSection from './HomeHeroSection';
 import HomeCurrentEvent from './HomeCurrentEvent';
 import HomePastEvent from './HomePastEvent';
-import GHomeHeroSection from './GHomeHeroSection';
+import HomeHeroSection from './HomeHeroSection';
 
 const Home = () => {
   return (
     <div className="min-h-screen">
       {/* ヒーローセクション */}
-      <GHomeHeroSection />
+      <HomeHeroSection />
       
       {/* 現在開催中のイベント */}
       <HomeCurrentEvent />
