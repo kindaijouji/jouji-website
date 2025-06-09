@@ -1,6 +1,5 @@
 import React from 'react';
 import KasaKasi from './KasaKasi';
-import GakubuchouKaidan from './Gakubucho';
 //ArrowRight部員採用を開始したら追加する
 const HomeCurrentEvent = () => {
   return (
