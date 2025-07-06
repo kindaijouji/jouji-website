@@ -20,30 +20,6 @@ function ComingSoon() {
                     傘の貸し出しサービス
                 </h1>
 
-                {/* 貸し出し場所 */}
-                {/* <div className="flex flex-col items-center gap-6 p-6"> */}
-                    {/* <div className="w-full max-w-2xl rounded-xl bg-blue-50 p-6 shadow-md"> */}
-                        {/* <h1 className="text-2xl font-bold mb-6 text-center text-blue-700">貸し出し場所のご案内</h1> */}
-
-                        {/* <section className="bg-white border rounded-lg p-6 mb-6 mx-auto max-w-xl"> */}
-                        {/* <h2 className="text-xl font-semibold mb-3 text-center text-blue-700">① ロビー</h2> */}
-                        {/* <p className="text-center">ロビーに設置されたカードリーダーに学生証をかざしてください。</p> */}
-                        {/* </section> */}
-
-                        {/* <section className="bg-white border rounded-lg p-6 mb-6 mx-auto max-w-xl"> */}
-                        {/* <h2 className="text-xl font-semibold mb-3 text-center text-blue-700">② 自治会室</h2> */}
-                        {/* <p className="text-center">自治会室にて必要事項を記入のうえ、学生証を提示してください。</p> */}
-                        {/* <p className="text-center">貸し出し対応は自治会室の開室中のみ行っております。</p> */}
-                        {/* </section> */}
-
-                        {/* <div className="text-base text-blue-700 mt-4 text-center max-w-xl mx-auto"> */}
-                        {/* ※ 傘は<strong>借りた場所へ返却</strong>してください。<br /> */}
-                        {/* 管理方法が異なるため、別の場所に返すことはできません。 */}
-                        {/* </div> */}
-                    {/* </div> */}
-                {/* </div> */}
-
-
                 {/* カレンダー */}
                 <div className="my-8">
                     <UmbrellaLendingCalendar />
@@ -82,22 +58,6 @@ function ComingSoon() {
                                 <ChevronDown size={18} className="ml-1" />
                             )}
                         </button>
-
-                        {/* <button */}
-                            {/* onClick={() => toggleTab("b")} */}
-                            {/* className={`flex items-center px-4 py-2 rounded-lg font-semibold transition ${ */}
-                                {/* activeTab === "b" */}
-                                    {/* ? "bg-blue-600 text-white" */}
-                                    {/* : "bg-blue-100 hover:bg-blue-200 text-blue-700" */}
-                            {/* }`} */}
-                        {/* > */}
-                            {/* 自治会室用の利用規約 */}
-                            {/* {activeTab === "b" ? ( */}
-                                {/* <ChevronUp size={18} className="ml-1" /> */}
-                            {/* ) : ( */}
-                                {/* <ChevronDown size={18} className="ml-1" /> */}
-                            {/* )} */}
-                        {/* </button> */}
                     </div>
 
                     {/* ロビー用の利用規約 */}
@@ -174,78 +134,6 @@ function ComingSoon() {
                             </p>
                         </div>
                     )}
-
-
-
-                    {/* 自治会室用の利用規約 */}
-                    {/* {activeTab === "b" && ( */}
-                        {/* <div className="mb-6 text-sm text-gray-700 bg-gray-50 p-4 rounded-xl text-left leading-relaxed space-y-2"> */}
-                            {/* <p className="font-bold text-base">傘貸出サービス利用規約</p> */}
-                            {/* <p className="pl-4"> */}
-                                {/* 本利用規約（以下、「本規約」）は、近畿大学生を対象とした傘貸出サービス（以下、「本サービス」）の利用に関する条件を定めるものです。利用者は、本サービスを利用することで、本規約に同意したものとみなします。 */}
-                            {/* </p> */}
-
-                            {/* <p className="font-bold mt-4">第1条（貸出対象者）</p> */}
-                            {/* <p className="pl-4"> */}
-                                {/* 本サービスは、近畿大学に在籍する学生（以下、「利用者」）のみが利用できます。 */}
-                            {/* </p> */}
-
-                            {/* <p className="font-bold mt-4">第2条（貸出方法）</p> */}
-                            {/* <p className="pl-4"> */}
-                                {/* 利用者は、貸出場所（自治会室）の貸し出し管理表に必要事項を全て記入することにより、貸出手続きを行うものとします。<br /> */}
-                                {/* 貸出は一度に1本までとし、貸出記録はデータベース上で管理されます。 */}
-                            {/* </p> */}
-
-                            {/* <p className="font-bold mt-4">第3条（返却方法）</p> */}
-                            {/* <p className="pl-4"> */}
-                                {/* 利用者は、貸出場所の貸し出し管理表に必要事項を全て記入することにより、返却手続きを行うものとします。<br /> */}
-                                {/* 延滞情報はデータベース上で管理されます。 */}
-                            {/* </p> */}
-
-                            {/* <p className="font-bold mt-4">第4条（貸出期間および延滞時の対応）</p> */}
-                            {/* <p className="pl-4"> */}
-                                {/* 利用者は、土日を除く貸出後3日以内に返却するものとします。<br /> */}
-                                {/* 返却期限を過ぎて返却した場合、貸出日から1ヶ月以内であれば警告のみが行われます。<br /> */}
-                                {/* 貸出日から1ヶ月が経過しても傘の返却が行われない場合、担当者による直接の返却通告が行われます。<br /> */}
-                                {/* 延滞後であっても、返却手続きを完了すれば、再び傘を借りることができます。<br /> */}
-                                {/* 1ヶ月以上の延滞による通告を2回受けた場合、それ以降の傘の貸出を行いません。 */}
-                            {/* </p> */}
-
-                            {/* <p className="font-bold mt-4">第5条（傘の破損および賠償）</p> */}
-                            {/* <p className="pl-4"> */}
-                                {/* 通常の使用による消耗、および強風による破損については、利用者に責任は生じません。<br /> */}
-                                {/* 前項の規定にかかわらず、破損を報告せずに通常の返却手続きを行い、後に破損が発覚した場合、状況に応じて後日対応をお願いすることがあります。<br /> */}
-                                {/* 貸出中に傘が盗難された場合、その旨を速やかに報告してください。明らかな過失が認められた場合のみ、本サービスの運営者が必要と判断する対応を行うものとします。<br /> */}
-                                {/* 故意または重大な過失により傘の破損が起きた場合、破損の報告を行えば罪を問うことはありません。 */}
-                            {/* </p> */}
-
-                            {/* <p className="font-bold mt-4">第6条（無断持ち出しの禁止）</p> */}
-                            {/* <p className="pl-4"> */}
-                                {/* 貸出手続きを行わずに傘を持ち出したことが発覚した場合、Slackにより警告が行われます。<br /> */}
-                                {/* 同様の行為が繰り返し認められる場合、直接の注意を行うとともに、状況に応じて担当教員への連絡を行う場合があります。<br /> */}
-                                {/* 無断持ち出しの上、返却が行われなかった場合、状況に応じて本サービスの運営者が必要と判断する対応を行うものとします。 */}
-                            {/* </p> */}
-
-                            {/* <p className="font-bold mt-4">第7条（免責事項）</p> */}
-                            {/* <p className="pl-4"> */}
-                                {/* 本サービスの傘の使用により生じた事故や損害について、本サービス運営者は一切の責任を負いません。<br /> */}
-                                {/* システム障害により貸出が不可能になった場合、または貸出台数が上限に達した場合、本サービス運営者はその補償を行いません。<br /> */}
-                                {/* 本サービス運営者は、事前の通知なしに本規約を変更できるものとします。 */}
-                            {/* </p> */}
-
-                            {/* <p className="font-bold mt-4">第8条（問い合わせ）</p> */}
-                            {/* <p className="pl-4"> */}
-                                {/* 傘が破損した場合、返却前に情報学部自治会ホームページの質問箱、もしくは情報学部自治会のInstagramのDMを通じて報告を行ってください。<br /> */}
-                                {/* 問い合わせへの返信は、原則として3日以内に行います。 */}
-                            {/* </p> */}
-
-                            {/* <p className="font-bold mt-4">第9条（個人情報の取扱い）</p> */}
-                            {/* <p className="pl-4"> */}
-                                {/* 本サービスでは、貸出管理のために学籍番号を収集します。<br /> */}
-                                {/* 収集した学籍番号は、傘貸出サービスの運営目的のみに使用し、それ以外の目的には利用しません。 */}
-                            {/* </p> */}
-                        {/* </div> */}
-                    {/* )} */}
 
                 </div>
             </div>

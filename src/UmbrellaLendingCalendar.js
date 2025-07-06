@@ -37,7 +37,7 @@ const UmbrellaLendingCalendar = () => {
     const isSelected = day === selectedDay;
     const isReturn = day === returnDay;
     
-    let className = "flex flex-col items-center justify-center w-16 h-16 m-1 rounded-lg ";
+    let className = "flex flex-col items-center justify-center w-16 h-20 m-1 rounded-lg ";
     
     if (isSelected) {
       className += "bg-blue-500 text-white font-bold ";
@@ -85,49 +85,44 @@ const UmbrellaLendingCalendar = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-6 bg-blue-50 rounded-lg shadow-lg max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold text-blue-700 mb-2">傘の貸し出し期間</h1>
-      <h2 className="text-xl text-blue-600 mb-6">営業日3日間（土日を除く）</h2>
+    <div className="flex flex-col items-center p-4 sm:p-6 bg-blue-50 rounded-lg shadow-lg max-w-2xl mx-auto text-sm sm:text-base">
+      {/* 貸し出し場所 */}
+            <h1 className="text-xl sm:text-2xl font-bold mb-6 text-center text-blue-700">貸し出し場所のご案内</h1>
+
+            <section className="bg-white border rounded-lg p-4 sm:p-6 mb-0 mx-auto w-full">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-3 text-center text-blue-700">ロビー</h2>
+            <p className="text-center">ロビーに設置されたカードリーダーに学生証をかざしてください。</p>
+            </section>
+            <div className="text-base text-blue-700 mt-4 text-center w-full mb-8">
+            ※ 傘は<strong>借りた場所へ返却</strong>してください。 <br/>
+            </div>
+
+      <h1 className="text-xl sm:text-2xl font-bold text-blue-700 mb-2">傘の貸し出し期間</h1>
+      <h2 className="text-lg sm:text-xl text-blue-600 mb-6">営業日3日間（土日を除く）</h2>
       
       <div className="bg-white rounded-lg shadow-md p-4 mb-6 w-full">
-        <p className="text-center text-lg mb-4">
+        <p className="text-center text-base mb-4">
           借りる曜日をクリックすると、返却する曜日が表示されます
         </p>
         
         {/* カレンダー表示 */}
-        <div className="flex flex-wrap justify-center mb-6">
+        <div className="grid grid-cols-4 sm:flex sm:flex-wrap justify-center mb-6">
           {days.map((day, index) => (
             <div 
               key={index} 
               className={getDayStyle(day)}
               onClick={() => handleDayClick(day)}
             >
-              <span className="text-lg font-semibold">{day}</span>
+              <span className="text-base font-semibold">{day}</span>
+              {day === selectedDay && <div className="mt-1 text-xs">借りる</div>}
+              {day === returnDay && <div className="mt-1 text-xs">返す</div>}
               
-              {/* 借りる・返すアイコン */}
-              {day === selectedDay && (
-                <div className="mt-1 text-xs">借りる</div>
-              )}
-              {day === returnDay && (
-                <div className="mt-1 text-xs">返す</div>
-              )}
-              
-              {/* 傘アイコン */}
-              {(day === selectedDay || day === returnDay) && (
-                <svg 
-                  className="w-6 h-6 mt-1" 
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M14 15.5V8c0-1.1-.9-2-2-2s-2 .9-2 2v7.5c0 1.1.9 2 2 2s2-.9 2-2zm6-7.5c0-3.87-3.13-7-7-7S6 4.13 6 8c-.79 0-1.5.4-1.91 1.01C3.71 9.56 3.5 10.15 3.5 11c0 2 1.73 3 3.5 3h8c2.76 0 5-2.24 5-5zm-8-5c2.76 0 5 2.24 5 5h-5V3z" />
-                </svg>
-              )}
             </div>
           ))}
         </div>
         
         {/* 説明 */}
-        <div className="flex justify-center space-x-6 mb-4">
+        <div className="flex flex-wrap justify-center space-x-4 sm:space-x-6 mb-4">
           <div className="flex items-center">
             <div className="w-4 h-4 rounded-full bg-blue-500 mr-2"></div>
             <span>借りる日</span>
@@ -144,8 +139,8 @@ const UmbrellaLendingCalendar = () => {
         <div className="bg-white rounded-lg shadow-md p-4 w-full">
           <h3 className="text-lg font-bold text-blue-700 mb-3">貸出詳細:</h3>
           
-          <div className="flex justify-between items-center bg-gray-100 p-3 rounded-lg mb-4">
-            <div className="flex items-center">
+          <div className="flex flex-col sm:flex-row justify-between items-center bg-gray-100 p-3 rounded-lg mb-4">
+            <div className="flex items-center mb-4 sm:mb-0">
               <div className="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center mr-3">
                 <span className="text-lg font-bold">{selectedDay}</span>
               </div>
@@ -155,7 +150,7 @@ const UmbrellaLendingCalendar = () => {
               </div>
             </div>
             
-            <div className="flex-1 px-4">
+            <div className="w-full sm:w-auto flex-1 px-4">
               <div className="border-t-2 border-dashed border-gray-400 relative">
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-100 px-2">
                   <span className="font-bold">{getLendingDaysCount()}営業日</span>
@@ -163,18 +158,18 @@ const UmbrellaLendingCalendar = () => {
               </div>
             </div>
             
-            <div className="flex items-center">
+            <div className="flex items-center mt-4 sm:mt-0">
               <div className="w-12 h-12 rounded-full bg-green-500 text-white flex items-center justify-center mr-3">
                 <span className="text-lg font-bold">{returnDay}</span>
               </div>
               <div>
-                <p className="font-bold">返す日</p>
+                <p className="font-bold">返す日　</p>
                 <p className="text-sm text-gray-600">{returnDay}曜日</p>
               </div>
             </div>
           </div>
           
-          <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded">
+          <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 rounded text-sm">
             <p className="text-yellow-700">
               <strong>注意:</strong> 土曜日・日曜日は借りることはできますが、貸出日数にはカウントされません。
               例えば、金曜日に借りた場合は水曜日までの貸出（金→[土日]→月→火→水）、
