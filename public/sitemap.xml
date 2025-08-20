@@ -7,19 +7,19 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://kindaijouji.com/about</loc>
+    <loc>https://kindaijouji.com/#/about</loc>
     <lastmod>2025-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindaijouji.com/kdixfes</loc>
+    <loc>https://kindaijouji.com/#/kdixfes</loc>
     <lastmod>2025-08-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://kindaijouji.com/qabox</loc>
+    <loc>https://kindaijouji.com/#/qabox</loc>
     <lastmod>2025-08-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
