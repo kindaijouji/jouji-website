@@ -18,8 +18,8 @@ function KasaKasi() {
           <div>
             <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">傘の貸し出し</h3>
             <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
-              雨天時の傘の貸し出しを自治会室とロビーで行なっております。<br/>
-              <span className="text-red-600 font-medium">ロビーで傘を借りる時と返す際</span>
+              雨天時の傘の貸し出しをロビーで行なっております。<br/>
+              <span className="text-red-600 font-medium">傘を借りる時と返す際</span>
               は学生証のタッチをお忘れなくお願いします。
             </p>
             <div className="space-y-3 mb-5 sm:mb-6">
@@ -27,7 +27,7 @@ function KasaKasi() {
                 <MapPin className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
                 <div className="ml-3">
                   <p className="text-gray-900 font-medium text-sm">貸し出し場所</p>
-                  <p className="text-gray-600 text-sm sm:text-base">情報学部自治会室（E館1階）<br/>E館1階ロビー</p>
+                  <p className="text-gray-600 text-sm sm:text-base">E館1階ロビー</p>
                 </div>
               </div>
               <div className="flex items-start">
