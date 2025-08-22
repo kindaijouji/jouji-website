@@ -12,7 +12,7 @@ const QAList = () => {
     const categoriesList = ['すべて', '自治会について', 'イベント', '学校生活', 'その他'];
 
     // ダミーデータ（CSVデータが取得できない場合の表示用）
-    const dummyData = [
+    const dummyData = React.useMemo(() => [
         {
             id: 1,
             question: "ゲーム大会などの開催予定はありますか！",
@@ -25,7 +25,7 @@ const QAList = () => {
             answer: "ユニパによると8/27の午前5時からだそうです!!",
             category: "学校生活"
         },
-    ];
+    ], []);
 
     // テキストの改行を処理する共通関数
     const formatTextWithLineBreaks = (text) => {
@@ -91,8 +91,7 @@ const QAList = () => {
                                             title="Google Drive Preview"
                                             width="100%"
                                             height="480"
-                                            frameBorder="0"
-                                            scrolling="no"
+                                            style={{ border: 0 }}
                                             className="w-full"
                                             allow="autoplay"
                                         ></iframe>
