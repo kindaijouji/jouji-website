@@ -7,12 +7,8 @@ function PhotoGallery() {
     const sampleImages = [
         "/Picture/sample1.png",
         "/Picture/sample2.png",
-        "https://placehold.co/500x300/3498db/ffffff?text=横長",
-        "https://placehold.co/300x500/e74c3c/ffffff?text=縦長",
-        "https://placehold.co/400x400/2ecc71/ffffff?text=正方形",
-        "https://placehold.co/600x350/f1c40f/ffffff?text=ワイド",
-        "https://placehold.co/300x450/9b59b6/ffffff?text=縦長2",
-        "https://placehold.co/400x250/1abc9c/ffffff?text=横長2",
+        "/Picture/sample4.jpg",
+        "/Picture/sample5.png",
     ];
     const toggleGallery = () => setIsExpanded(prev => !prev);
     const imagesToShow = isExpanded ? sampleImages : sampleImages.slice(0, 3);
