@@ -12,6 +12,22 @@ const QAList = () => {
 
     const categoriesList = ['すべて', '自治会について', 'イベント', '学校生活', 'その他'];
 
+    // ダミーデータ（CSVデータが取得できない場合の表示用）
+    const dummyData = [
+        {
+            id: 1,
+            question: "ゲーム大会などの開催予定はありますか！",
+            answer: "すみません、今のところ開催予定はありません。ゲーム大会を開いてほしいと言う意見が多数出てきたら、開催に向けて動いていこうと思っています！！",
+            category: "イベント"
+        },
+        {
+            id: 2,
+            question: "2025年度の前期の成績開示っていつですか?",
+            answer: "ユニパによると8/27の午前5時からだそうです!!",
+            category: "学校生活"
+        },
+    ];
+
     // テキストの改行を処理する共通関数
     const formatTextWithLineBreaks = (text) => {
         if (!text) return '';
@@ -113,10 +129,17 @@ const QAList = () => {
 
     useEffect(() => {
         const url = process.env.REACT_APP_URL;
+        console.log('Fetching URL:', url);
 
         fetch(url)
-            .then(response => response.text())
+            .then(response => {
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                return response.text();
+            })
             .then(csvData => {
+                console.log('CSV Data length:', csvData.length);
+                console.log('CSV Data preview:', csvData.substring(0, 200));
                 function parseCSV(text) {
                     const result = [];
                     let row = [];
@@ -180,12 +203,15 @@ const QAList = () => {
                         category: row[categoryIndex] || '自治会について'
                     }));
 
-                setData(filteredData);
+                // CSVデータとダミーデータを結合して表示
+                const combinedData = [...dummyData, ...filteredData];
+                setData(combinedData);
                 setLoading(false);
             })
             .catch(error => {
                 console.error('Error:', error);
-                setError('データの取得に失敗しました');
+                console.log('CSVデータの取得に失敗しました。ダミーデータのみを表示します。');
+                setData(dummyData);
                 setLoading(false);
             });
     }, []);
