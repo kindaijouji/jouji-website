@@ -15,7 +15,7 @@ const QABoxHeader = () => {
 
                 <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto">
                     自治会への意見や開催してほしいイベント、学生に聞きたい授業のこと、
-                    学校生活での疑問など、何でも気軽にお聞かせください。
+                    学校生活での疑問など、何でも気軽に投稿してください。
                     <br />
                     <span className="text-blue-600 font-medium">みんなの声でより良い学生生活を作りましょう！</span>
                 </p>
