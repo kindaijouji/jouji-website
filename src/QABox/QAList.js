@@ -5,7 +5,6 @@ const QAList = () => {
     // ========== 状態管理（State）の定義 ==========
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('すべて');
     const [openQuestionId, setOpenQuestionId] = useState(null);
@@ -232,13 +231,7 @@ const QAList = () => {
         );
     }
 
-    if (error) {
-        return (
-            <div className="p-4 bg-red-50 border border-red-200 rounded-md">
-                <p className="text-red-600">{error}</p>
-            </div>
-        );
-    }
+
 
     return (
         <div>
