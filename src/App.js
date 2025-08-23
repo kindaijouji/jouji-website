@@ -20,7 +20,7 @@ function App() {
         <Route path="/kdixfes" element={<KdixFes />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="*" element={<Home />} />
-        <Route path="/syasinntab" element={<Syashintab />} />
+        <Route path="/iroseka" element={<Syashintab />} />
       </Routes>
       <Footer />
     </Router>

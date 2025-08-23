@@ -243,7 +243,6 @@ function PhotoContestPage() {
                                             <li><strong>テーマ:</strong> 「夏の思い出」</li>
                                             <li><strong>応募期間:</strong> 2025年9月12日 〜 9月19日</li>
                                             <li><strong>発表期間:</strong> 2025年10月1日 〜 10月7日</li>
-                                            <li><strong>先生賞の種類:</strong> 濱砂先生賞、毛利先生賞、柏崎先生賞、山元先生賞、水谷先生賞、半田先生賞</li>
                                             <li><strong>作品展示:</strong> 入賞作品はi-coreにて約1週間プロジェクターを使い投影します。</li>
                                             <li><strong>主催:</strong> 近畿大学情報学部自治会</li>
                                         </ul>
@@ -277,7 +276,7 @@ function PhotoContestPage() {
                                 
                                 <p className="font-bold mt-4">第6条（審査及び賞）</p>
                                 <p className="pl-4">1.応募作品は、主催者が任命する審査員により、厳正に審査されます。</p>
-                                <p className="pl-4">2.本コンテストに設ける賞は、以下のとおりとします。<br/>濱砂先生賞 1名<br/>毛利先生賞 1名<br/>柏崎先生賞 1名<br/>山元先生賞 1名<br/>水谷先生賞 1名<br/>自治会賞 1名</p>
+                                <p className="pl-4">2.本コンテストに設ける賞は、以下のとおりとします。<br/>先生賞 5名<br/>自治会賞 1名</p>
                                 <p className="pl-4">3.受賞作品及び応募者が届け出たペンネームは、第2条第3項に定める場所において公表します。</p>
                                 
                                 <p className="font-bold mt-4">第7条（権利の帰属及び利用許諾）</p>

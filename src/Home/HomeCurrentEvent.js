@@ -1,5 +1,6 @@
 import React from 'react';
 import KasaKasi from './KasaKasi';
+import Syashin from './Syashin';
 //ArrowRight部員採用を開始したら追加する
 const HomeCurrentEvent = () => {
   return (
@@ -13,7 +14,10 @@ const HomeCurrentEvent = () => {
         {/* イベント一覧 */}
         <div className='my-8' />
         <KasaKasi />
+        <br></br>
+        <Syashin />
       </div>
+      
 
     </section>
   );

@@ -19,7 +19,7 @@ const Header = () => {
         { id: 'kdixfes', name: '情報学部祭' },
         { id: 'qabox', name: '質問箱' },
         { id: 'coming-soon', name: '傘の貸し出し' },
-        { id: 'syasinntab', name: '写真大会' }
+        { id: 'iroseka', name: '写真大会' }
     ];
 
     return (
