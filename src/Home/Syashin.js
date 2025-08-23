@@ -7,7 +7,7 @@ function Syashin() {
   
   //ComingSoonへと飛ばす関数
   const handleButtonClick = () => {
-    navigate('/syasinntab'); //TODO
+    navigate('/iroseka'); //TODO
   };
 
   return (
