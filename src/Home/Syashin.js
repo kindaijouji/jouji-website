@@ -7,7 +7,7 @@ function Syashin() {
   
   //ComingSoonへと飛ばす関数
   const handleButtonClick = () => {
-    navigate('/coming-soon'); //TODO
+    navigate('/syasinntab'); //TODO
   };
 
   return (

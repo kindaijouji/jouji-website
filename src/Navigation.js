@@ -47,6 +47,11 @@ function Navigation() {
                             ComingSoon
                         </Link>
                     </li>
+                    <li>
+                        <Link to="/syasinntab" className="hover:text-gray-300 transition-colors">
+                            写真大会
+                        </Link>
+                    </li>
                 </ul>
             </nav>
 
@@ -88,6 +93,15 @@ function Navigation() {
                                 onClick={toggleMenu}
                             >
                                 ComingSoon
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to="/syasinntab"
+                                className="block px-4 py-2 hover:bg-gray-700 transition-colors"
+                                onClick={toggleMenu}
+                            >
+                                写真大会
                             </Link>
                         </li>
                     </ul>

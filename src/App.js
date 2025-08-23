@@ -7,6 +7,7 @@ import About from "./About/About";
 import QABox from "./QABox/QABox";
 import KdixFes from "./KdixFes/KdixFes";
 import ComingSoon from "./ComingSoon";
+import Syashintab from "./syasinntab";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/kdixfes" element={<KdixFes />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="*" element={<Home />} />
+        <Route path="/syasinntab" element={<Syashintab />} />
       </Routes>
       <Footer />
     </Router>
