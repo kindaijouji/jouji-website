@@ -212,7 +212,7 @@ const QAList = () => {
                 setData(dummyData);
                 setLoading(false);
             });
-    }, []);
+    }, [dummyData]);
 
     const filteredQA = data.filter(qa =>
         (selectedCategory === 'すべて' || qa.category === selectedCategory) &&
