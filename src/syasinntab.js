@@ -1,323 +1,310 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Camera, Info, ChevronDown, ChevronUp, Image as ImageIcon, FileText, Award, Users, Shield, Send } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Camera, Info, ChevronDown, ChevronUp, Image as ImageIcon, FileText, Award, Users, Shield, Send, X } from 'lucide-react';
 
 // --- サンプルのギャラリーコンポーネント ---
+// This component displays a grid of sample photos.
+// It includes a button to expand or collapse the gallery and a modal to view images.
 function PhotoGallery() {
     const [isExpanded, setIsExpanded] = useState(false);
+
+    // Array of sample image paths.
     const sampleImages = [
-        "/Picture/sample1.png",
-        "/Picture/sample2.png",
-        "/Picture/sample4.jpg",
-        "/Picture/sample5.png",
+        "/Picture/sample6.jpg",
+        "/Picture/sample15.jpg",
+        "/Picture/sample8.jpg",
+        "/Picture/sample9.jpg",
+        "/Picture/sample10.jpg",
+        "/Picture/sample11.jpg",
+        "/Picture/sample12.jpg",
+        "/Picture/sample13.jpg",
+        "/Picture/sample14.jpg",
     ];
+    // Toggles the expanded state of the gallery.
     const toggleGallery = () => setIsExpanded(prev => !prev);
-    const imagesToShow = isExpanded ? sampleImages : sampleImages.slice(0, 3);
+    // Determines which images to show based on the expanded state.
+    const imagesToShow = isExpanded ? sampleImages : sampleImages.slice(0, 4);
 
     return (
-        <div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="mx-auto">
+            {/* The number of columns now adjusts based on screen width for better responsiveness. */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                 {imagesToShow.map((src, index) => (
-                    <div key={index} className="h-56 md:h-64 overflow-hidden rounded-lg shadow-md group bg-gray-100 flex items-center justify-center p-2">
+                    <div 
+                        key={index} 
+                        className="overflow-hidden rounded-xl shadow-lg group flex items-center justify-center bg-gray-100 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-200/50 hover:-translate-y-2 cursor-pointer"
+                        onClick={() => setSelectedImage(src)} // Set the selected image on click
+                    >
                         <img 
                             src={src} 
                             alt={`サンプル作品 ${index + 1}`}
-                            className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                            onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x300/cccccc/ffffff?text=Error'; }}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                            // Fallback image in case the original fails to load.
+                            onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x300/e2e8f0/4a5568?text=Image+Not+Found'; }}
                         />
                     </div>
                 ))}
             </div>
-            <div className="mt-8">
+            <div className="mt-12 text-center">
                 <button
                     onClick={toggleGallery}
-                    className="flex items-center mx-auto px-4 py-2 rounded-lg font-semibold transition bg-gray-100 hover:bg-gray-200 text-gray-700"
+                    className="flex items-center mx-auto px-8 py-3 rounded-full font-semibold transition bg-gray-800 text-white hover:bg-gray-900 shadow-md"
                 >
                     {isExpanded ? '一部を隠す' : 'すべての作品を見る'}
-                    {isExpanded ? <ChevronUp size={18} className="ml-1" /> : <ChevronDown size={18} className="ml-1" />}
+                    {isExpanded ? <ChevronUp size={20} className="ml-2" /> : <ChevronDown size={20} className="ml-2" />}
                 </button>
             </div>
+
+            {/* Modal for displaying the selected image */}
+            {selectedImage && (
+                <div 
+                    className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 p-4 transition-opacity duration-300"
+                    onClick={() => setSelectedImage(null)} // Click background to close
+                >
+                    <img 
+                        src={selectedImage} 
+                        alt="拡大表示" 
+                        className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                        onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking the image itself
+                    />
+                     <button 
+                        className="absolute top-5 right-5 text-white hover:text-gray-300 transition-colors"
+                        onClick={() => setSelectedImage(null)}
+                    >
+                        <X size={32} />
+                    </button>
+                </div>
+            )}
         </div>
     );
 }
 
-// --- メインのコンポーネント (修正済み) ---
-function PhotoContestPage() {
+// --- メインのコンポーネント (最終デザイン案) ---
+// This is the main component for the photo contest page.
+// It manages the active tab and checks the submission period.
+function App() {
     const [activeContent, setActiveContent] = useState('gallery');
-    const canvasRef = useRef(null);
-    
-    // --- 変更点 1: 募集期間内かを判定するstateを追加 ---
     const [isAccepting, setIsAccepting] = useState(false);
-
-    // 背景のパーティクルアニメーション
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-        let animationFrameId;
-
-        const resizeCanvas = () => {
-            canvas.width = canvas.offsetWidth;
-            canvas.height = canvas.offsetHeight;
-        };
-        
-        resizeCanvas();
-
-        let particles = [];
-        const particleCount = 50;
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 1.5 + 0.5,
-                vx: Math.random() * 1 - 0.5,
-                vy: Math.random() * 1 - 0.5,
-                opacity: Math.random() * 0.4 + 0.1
-            });
-        }
-
-        const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.x += p.vx;
-                p.y += p.vy;
-
-                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
-                ctx.fill();
-            });
-            animationFrameId = requestAnimationFrame(animate);
-        };
-
-        animate();
-        
-        window.addEventListener('resize', resizeCanvas);
-
-        return () => {
-            window.removeEventListener('resize', resizeCanvas);
-            cancelAnimationFrame(animationFrameId);
-        };
-    }, []);
-
-    // --- 変更点 2: JSTで募集期間を判定するロジックを追加 ---
+    
+    // Effect to check if the current date is within the submission period.
     useEffect(() => {
         const checkSubmissionPeriod = () => {
             const now = new Date();
-            // JST（UTC+9）での期間を設定
+            // Define the start and end dates for submissions.
             const startDate = new Date('2025-09-12T00:00:00+09:00');
             const endDate = new Date('2025-09-19T23:59:59+09:00');
-
-            if (now >= startDate && now <= endDate) {
-                setIsAccepting(true);
-            } else {
-                setIsAccepting(false);
-            }
+            setIsAccepting(now >= startDate && now <= endDate);
         };
-
         checkSubmissionPeriod();
-    }, []); // ページ読み込み時に一度だけ実行
+    }, []);
 
+    // Helper function to generate class names for tabs based on active state.
+    const getTabClassName = (contentName) => {
+        return `flex items-center justify-center gap-2 px-3 py-3 font-bold transition-all duration-300 ${
+            activeContent === contentName 
+                ? 'text-indigo-600 border-b-2 border-indigo-600' 
+                : 'text-gray-500 hover:text-indigo-600'
+        }`;
+    };
 
     return (
-        <div className="min-h-screen flex justify-center bg-gradient-to-br from-purple-100 via-indigo-100 to-blue-100 p-4 pt-32 pb-20">
+        <div className="min-h-screen bg-white text-gray-800 selection:bg-pink-200/50 font-sans">
             <style>
                 {`
+                    /* Floating animation for the header icon */
                     @keyframes float {
                         0% { transform: translateY(0px); }
-                        50% { transform: translateY(-8px); }
+                        50% { transform: translateY(-12px); }
                         100% { transform: translateY(0px); }
                     }
                     .float-animation {
-                        animation: float 3s ease-in-out infinite;
+                        animation: float 5s ease-in-out infinite;
                     }
+                    /* Fade-in animation for content sections */
                     @keyframes fadeIn {
-                        from { opacity: 0; transform: translateY(10px); }
+                        from { opacity: 0; transform: translateY(20px); }
                         to { opacity: 1; transform: translateY(0); }
                     }
                     .fade-in {
-                        animation: fadeIn 0.5s ease-out forwards;
+                        animation: fadeIn 0.8s ease-out forwards;
+                    }
+                    /* Speech bubble animation */
+                    @keyframes bounce-in {
+                        0% { transform: scale(0) rotate(10deg); opacity: 0; }
+                        60% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+                        100% { transform: scale(1) rotate(12deg); opacity: 1; }
+                    }
+                    .bubble-animation {
+                        animation: bounce-in 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s forwards;
+                        opacity: 0; /* Start hidden */
+                    }
+                    /* Speech bubble tail */
+                    .speech-bubble::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -8px; /* Position it at the bottom */
+                        left: 20px; /* Position it horizontally */
+                        width: 16px;
+                        height: 16px;
+                        background-color: #ec4899; /* Same as bg-pink-500 */
+                        transform: rotate(45deg);
+                        z-index: -1;
                     }
                 `}
             </style>
-            <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full text-center overflow-hidden transition-shadow duration-300 hover:shadow-indigo-200">
-                {/* タイトルセクション */}
-                <div className="relative p-10 pb-20 bg-gradient-to-r from-purple-500 to-indigo-600 text-white">
-                    <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0"></canvas>
-                    <div className="relative z-10">
-                        <div className="mb-4 float-animation">
-                            <Camera size={64} className="mx-auto" />
-                        </div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2" style={{textShadow: '2px 2px 8px rgba(0,0,0,0.6)'}}>
+
+            {/* Header Section */}
+            <header className="relative w-full text-center pt-24 pb-6 sm:pt-32 sm:pb-8">
+                 <div className="relative z-10 px-4">
+                    <div className="mb-6 float-animation text-pink-500">
+                        <Camera size={72} className="mx-auto drop-shadow-lg" strokeWidth={1.5}/>
+                    </div>
+                    {/* Title container for positioning the speech bubble */}
+                    <div className="relative inline-block mx-auto">
+                        <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-3">
                             イロセカ - Photo Contest
                         </h1>
-                        <p className="text-indigo-100" style={{textShadow: '1px 1px 4px rgba(0,0,0,0.6)'}}>それぞれの夏、最高の瞬間を、みんなに</p>
+                        {/* Speech Bubble */}
+                        <div className="absolute -top-10 sm:-top-8 -right-12 sm:-right-20 transform rotate-12 bubble-animation">
+                            <div className="speech-bubble relative bg-pink-500 text-white text-sm sm:text-base font-bold py-2 px-4 rounded-lg shadow-lg">
+                                先生賞がもらえるかも！
+                            </div>
+                        </div>
                     </div>
-                    {/* 波形の区切り */}
-                    <div className="absolute bottom-0 left-0 w-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                            <path fill="#ffffff" fillOpacity="1" d="M0,224L80,213.3C160,203,320,181,480,186.7C640,192,800,224,960,218.7C1120,213,1280,171,1360,149.3L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
-                        </svg>
-                    </div>
+                    <p className="text-gray-600 text-lg">
+                        それぞれの夏、最高の瞬間を、みんなに
+                    </p>
+                </div>
+            </header>
+
+            {/* Content Section */}
+            <main className="px-4 pb-4 md:px-8 md:pb-8 max-w-5xl mx-auto">
+                {/* Submission Button */}
+                <div className="text-center mb-12">
+                     <a 
+                        href={isAccepting ? "https://docs.google.com/forms/d/e/1FAIpQLScF7-HaNXUCYmE477S0XpZzdfb1F6ggaSCQm8AUCQwicADG9w/viewform?usp=header" : undefined}
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-3 font-bold text-lg py-4 px-10 rounded-full shadow-lg transition-all transform ${
+                            isAccepting
+                                ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:scale-105 active:scale-100'
+                                : 'bg-gray-400 text-white/80 cursor-not-allowed'
+                        }`}
+                        onClick={(e) => !isAccepting && e.preventDefault()}
+                    >
+                        <Send size={22} />
+                        {isAccepting ? '作品を応募する' : '募集期間中ではありません'}
+                    </a>
                 </div>
 
-                {/* コンテンツセクション */}
-                <div className="p-8">
-                    {/* --- 変更点 3: 応募ボタンのスタイルと動作を動的に変更 --- */}
-                    <div className="mb-8">
-                        <a 
-                           href={isAccepting ? "https://docs.google.com/forms/d/e/1FAIpQLScF7-HaNXUCYmE477S0XpZzdfb1F6ggaSCQm8AUCQwicADG9w/viewform?usp=header" : undefined}
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           // isAccepting の値に応じてスタイルを切り替え
-                           className={`inline-flex items-center gap-2 font-bold py-3 px-8 rounded-full shadow-lg transition-all transform ${
-                               isAccepting
-                                   ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:scale-105'
-                                   : 'bg-gray-400 text-gray-100 cursor-not-allowed'
-                           }`}
-                           // isAccepting が false の場合はクリックイベントを無効化
-                           onClick={(e) => !isAccepting && e.preventDefault()}
-                           aria-disabled={!isAccepting}
-                           role="button"
-                        >
-                            <Send size={20} />
-                            {/* isAccepting の値に応じてボタンのテキストを切り替え */}
-                            {isAccepting ? '作品を応募する' : '募集期間外'}
-                        </a>
+                {/* Notice for when submissions are not open */}
+                {!isAccepting && (
+                    <div className="mb-12 p-4 bg-yellow-100 text-yellow-800 border border-yellow-200 rounded-xl flex items-center justify-center gap-3 text-center">
+                        <Info size={20} className="flex-shrink-0"/>
+                        <p className="font-semibold">現在は募集期間外です。</p>
                     </div>
+                )}
 
-                    {/* --- 変更点 4: 募集期間外メッセージを条件付きで表示 --- */}
-                    {!isAccepting && (
-                        <div className="mb-8 p-3 bg-yellow-50 text-yellow-800 text-sm rounded-lg flex items-center justify-center gap-2">
-                            <Info size={16} />
-                            <p>ただいま募集期間外のため、応募フォームはご利用になれません。</p>
+                {/* Tab Navigation */}
+                <div className="flex justify-center mb-12 space-x-4 sm:space-x-8 border-b border-gray-200">
+                    <button onClick={() => setActiveContent('gallery')} className={getTabClassName('gallery')}>
+                        <ImageIcon size={18} /> ギャラリー
+                    </button>
+                    <button onClick={() => setActiveContent('overview')} className={getTabClassName('overview')}>
+                        <Award size={18} /> 開催概要
+                    </button>
+                    <button onClick={() => setActiveContent('rules')} className={getTabClassName('rules')}>
+                       <FileText size={18} /> 応募規約
+                    </button>
+                </div>
+
+                {/* Displayed Content based on active tab */}
+                <div className="fade-in">
+                    {activeContent === 'gallery' && <PhotoGallery />}
+                    
+                    {activeContent === 'overview' && (
+                        <div className="text-left space-y-10 p-4">
+                            <h2 className="font-bold text-3xl text-center text-gray-900">開催概要</h2>
+                            <div className="grid grid-cols-2 gap-4 sm:gap-8 text-center">
+                                <div className="space-y-3 p-6 bg-gray-50 rounded-lg">
+                                    <Users className="text-indigo-500 mx-auto" size={40} />
+                                    <p className="font-bold text-xl text-gray-900">先生賞</p>
+                                    <p className="text-gray-600">先生方が選ぶ特別な作品</p>
+                                </div>
+                                <div className="space-y-3 p-6 bg-gray-50 rounded-lg">
+                                    <Shield className="text-indigo-500 mx-auto" size={40} />
+                                    <p className="font-bold text-xl text-gray-900">自治会賞</p>
+                                    <p className="text-gray-600">自治会が選ぶユニークな作品</p>
+                                </div>
+                            </div>
+                            <div className="flex items-start mt-8 space-x-4 p-6 bg-gray-50 rounded-lg">
+                                <Info size={28} className="text-indigo-500 flex-shrink-0 mt-1" />
+                                <div>
+                                    <ul className="space-y-3 text-lg text-gray-700">
+                                        <li><strong>テーマ:</strong> 「夏の思い出」</li>
+                                        <li><strong>応募期間:</strong> 2025年9月12日 〜 9月19日</li>
+                                        <li><strong>発表期間:</strong> 2025年10月1日 〜 10月7日</li>
+                                        <li><strong>作品展示:</strong> 入賞作品はi-coreにて約1週間プロジェクターを使い投影します。</li>
+                                        <li><strong>主催:</strong> 近畿大学情報学部自治会</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     )}
 
-                    {/* タブ切り替えボタン */}
-                    <div className="flex justify-center border-b-2 border-gray-200 mb-8">
-                        <button onClick={() => setActiveContent('gallery')} className={`px-4 py-2 font-semibold flex items-center gap-2 transition-all duration-300 ${activeContent === 'gallery' ? 'border-b-2 border-indigo-500 text-indigo-600' : 'text-gray-500 hover:text-indigo-500'}`}>
-                            <ImageIcon size={18} />ギャラリー
-                        </button>
-                        <button onClick={() => setActiveContent('overview')} className={`px-4 py-2 font-semibold flex items-center gap-2 transition-all duration-300 ${activeContent === 'overview' ? 'border-b-2 border-indigo-500 text-indigo-600' : 'text-gray-500 hover:text-indigo-500'}`}>
-                            <Award size={18} />開催概要
-                        </button>
-                        <button onClick={() => setActiveContent('rules')} className={`px-4 py-2 font-semibold flex items-center gap-2 transition-all duration-300 ${activeContent === 'rules' ? 'border-b-2 border-indigo-500 text-indigo-600' : 'text-gray-500 hover:text-indigo-500'}`}>
-                            <FileText size={18} />応募規約
-                        </button>
-                    </div>
-
-                    {/* 表示コンテンツ (省略) */}
-                    <div className="fade-in">
-                        {activeContent === 'gallery' && <PhotoGallery />}
-                        
-                        {activeContent === 'overview' && (
-                            <div className="text-left">
-                                {/* 賞一覧セクション */}
-                                <h3 className="font-bold text-lg text-gray-800 mb-4 text-center"> 賞一覧 </h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                                    <div className="bg-blue-50 p-3 rounded-lg border border-blue-200 flex items-center gap-3">
-                                        <Users className="text-blue-500" />
-                                        <div>
-                                            <p className="font-bold text-blue-800">先生賞</p>
-                                            <p className="text-sm text-blue-700">先生方が選ぶ特別な作品</p>
-                                        </div>
-                                    </div>
-                                    <div className="bg-green-50 p-3 rounded-lg border border-green-200 flex items-center gap-3">
-                                        <Shield className="text-green-500" />
-                                        <div>
-                                            <p className="font-bold text-green-800">自治会賞</p>
-                                            <p className="text-sm text-green-700">自治会が選ぶユニークな作品</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* 開催概要詳細 */}
-                                <div className="flex items-start bg-blue-50 rounded-lg p-4 mt-8">
-                                    <Info size={20} className="text-blue-600 mr-3 flex-shrink-0 mt-0.5" />
-                                    <div className="text-sm text-blue-800">
-                                        <ul className="space-y-2">
-                                            <li><strong>テーマ:</strong> 「夏の思い出」</li>
-                                            <li><strong>応募期間:</strong> 2025年9月12日 〜 9月19日</li>
-                                            <li><strong>発表期間:</strong> 2025年10月1日 〜 10月7日</li>
-                                            <li><strong>作品展示:</strong> 入賞作品はi-coreにて約1週間プロジェクターを使い投影します。</li>
-                                            <li><strong>主催:</strong> 近畿大学情報学部自治会</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
-                        {activeContent === 'rules' && (
-                            <div className="text-sm text-gray-700 bg-gray-50 p-4 rounded-xl text-left leading-relaxed space-y-3">
-                                {/* 規約内容は変更なしのため省略 */}
-                                <p className="font-bold text-base text-center mb-4">応募規約</p>
-                                <p className="pl-4">この応募規約（以下、「本規約」といいます。）は、近畿大学情報学部自治会（以下、「主催者」といいます。）が主催する写真コンテスト（以下、「本コンテスト」といいます。）に関する応募条件を定めるものです。本コンテストに応募する者（以下、「応募者」といいます。）は、本規約の全ての条項に同意の上、応募するものとします。なお、本コンテストへの応募が完了した時点で、応募者は本規約の内容に同意したものとみなします。</p>
-                                <p className="font-bold mt-4">第1条（応募資格）</p>
-                                <p className="pl-4">本コンテストに応募できる者は、近畿大学の学生、教職員、その他主催者が別途定める大学関係者に限るものとします。</p>
-                                
-                                <p className="font-bold mt-4">第2条（コンテストの期間及び場所）</p>
-                                <p className="pl-4">本コンテストの期間及び場所は、以下のとおりとします。<br/>応募期間: 2025年9月12日（金）から2025年9月19日（金）まで<br/>結果発表期間: 2025年10月1日（水）から2025年10月7日（火）まで<br/>発表場所: i-CORE 及び 情報学部自治会Webサイト</p>
-                                
-                                <p className="font-bold mt-4">第3条（テーマ）</p>
-                                <p className="pl-4">本コンテストのテーマは「夏の思い出」とします。応募者は、当該テーマに沿った作品を応募するものとします。</p>
-                                
-                                <p className="font-bold mt-4">第4条（応募作品）</p>
-                                <p className="pl-4">1.応募作品は、応募者本人が撮影し、かつ、当該作品に関する一切の著作権を正当に有する、未公表のオリジナル作品に限るものとします。</p>
-                                <p className="pl-4">2.応募は、応募者1名につき1作品までとします。</p>
-                                <p className="pl-4">3.応募作品の色調補正、トリミングは可能としますが、著しい加工（合成、変形等）が施され、写真の真正性を損なうと主催者が判断した作品は、審査の対象外となることがあります。</p>
-                                <p className="pl-4">4.生成AI（画像生成AIを含みますが、これに限りません。）を用いて自動生成された画像は、応募の対象外とします。</p>
-                                
-                                <p className="font-bold mt-4">第5条（応募方法）</p>
-                                <p className="pl-4">応募者は、情報学部自治会Webサイト上の応募フォームにアクセスし、所定の事項（ペンネームを含みます。）を記入の上、作品データをアップロードすることにより応募するものとします。</p>
-                                
-                                <p className="font-bold mt-4">第6条（審査及び賞）</p>
-                                <p className="pl-4">1.応募作品は、主催者が任命する審査員により、厳正に審査されます。</p>
-                                <p className="pl-4">2.本コンテストに設ける賞は、以下のとおりとします。<br/>先生賞 5名<br/>自治会賞 1名</p>
-                                <p className="pl-4">3.受賞作品及び応募者が届け出たペンネームは、第2条第3項に定める場所において公表します。</p>
-                                
-                                <p className="font-bold mt-4">第7条（権利の帰属及び利用許諾）</p>
-                                <p className="pl-4">1.応募作品の著作権は、応募者に帰属するものとします。</p>
-                                <p className="pl-4">2.応募者は、主催者に対し、応募作品を本コンテストの広報、記録、その他関連活動の目的で、情報学部自治会Webサイト、SNS、学内施設での展示において、無償かつ非独占的に使用（複製及び展示を含みます。）する権利を許諾するものとします。</p>
-                                <p className="pl-4">3.主催者は、前項に定める使用にあたり、応募者の承諾を得ることなく、応募作品のトリミングを行うことができるものとします。</p>
-                                <p className="pl-4">4.主催者は、応募作品の利用にあたり、応募者が届け出たペンネームを表示することができるものとします。</p>
-
-                                <p className="font-bold mt-4">第8条（表明保証）</p>
-                                <p className="pl-4">応募者は、主催者に対し、応募作品が第三者の著作権、肖像権、プライバシー権、パブリシティ権その他一切の権利を侵害しないことを表明し、保証するものとします。</p>
-
-                                <p className="font-bold mt-4">第9条（肖像権等）</p>
-                                <p className="pl-4">1.応募作品に、応募者以外の人物が含まれる場合、応募者は、当該人物から、本コンテストへの応募及び第7条に定める作品の利用について、事前の許諾を得るものとします。</p>
-                                <p className="pl-4">2.応募作品に関し、第三者との間で権利侵害その他の問題が生じた場合、主催者は一切の責任を負わず、応募者自身の責任と費用負担においてこれを解決するものとします。</p>
-
-                                <p className="font-bold mt-4">第10条（禁止事項）</p>
-                                <p className="pl-4">応募者は、本コンテストへの応募にあたり、以下の各号に該当する行為またはそのおそれのある行為をしてはなりません。</p>
-                                <ul className="list-decimal list-inside pl-8 space-y-1">
-                                    <li>法令または公序良俗に違反する行為</li>
-                                    <li>本コンテストの運営を妨げる行為</li>
-                                    <li>虚偽の内容で応募する行為</li>
-                                    <li>その他、主催者が不適切と判断する行為</li>
-                                </ul>
-
-                                <p className="font-bold mt-4">第11条（免責事項）</p>
-                                <p className="pl-4">1.主催者は、通信機器、通信回線、コンピュータ等の障害、または天災地変その他やむを得ない事由により、本コンテストの全部または一部を中断または中止することができるものとします。</p>
-                                <p className="pl-4">2.主催者は、本コンテストへの応募または応募できなかったことによって応募者に生じたいかなる損害についても、主催者の故意または重過失による場合を除き、一切の責任を負わないものとします。</p>
-
-                                <p className="font-bold mt-4">第12条（個人情報の取扱い）</p>
-                                <p className="pl-4">主催者は、応募者から提供された個人情報を、本コンテストの運営（応募者への連絡、審査、結果発表、問い合わせ対応等）に必要な範囲でのみ利用し、個人情報の保護に関する法律その他関連法令を遵守し、適切に取り扱うものとします。</p>
-
-                                <p className="font-bold mt-4">第13条（規約の変更）</p>
-                                <p className="pl-4">主催者は、必要と判断した場合、応募者への事前の通知なく本規約を変更できるものとします。本規約の変更後、応募者が本コンテストへの応募を継続した場合は、変更後の規約に同意したものとみなします。</p>
-
-                            </div>
-                        )}
-                    </div>
+                    {activeContent === 'rules' && (
+                        <div className="text-base text-left leading-relaxed space-y-4 p-4 text-gray-700 prose max-w-none">
+                            <h2 className="font-bold text-3xl text-center mb-8 text-gray-900">応募規約</h2>
+                            <p>この応募規約（以下、「本規約」といいます。）は、近畿大学情報学部自治会（以下、「主催者」といいます。）が主催する写真コンテスト（以下、「本コンテスト」といいます。）に関する応募条件を定めるものです。本コンテストに応募する者（以下、「応募者」といいます。）は、本規約の全ての条項に同意の上、応募するものとします。なお、本コンテストへの応募が完了した時点で、応募者は本規約の内容に同意したものとみなします。</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第1条（応募資格）</h3>
+                            <p>本コンテストに応募できる者は、近畿大学の学生、教職員、その他主催者が別途定める大学関係者に限るものとします。</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第2条（コンテストの期間及び場所）</h3>
+                            <p>本コンテストの期間及び場所は、以下のとおりとします。<br/>応募期間: 2025年9月12日（金）から2025年9月19日（金）まで<br/>結果発表期間: 2025年10月1日（水）から2025年10月7日（火）まで<br/>発表場所: i-CORE 及び 情報学部自治会Webサイト</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第3条（テーマ）</h3>
+                            <p>本コンテストのテーマは「夏の思い出」とします。応募者は、当該テーマに沿った作品を応募するものとします。</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第4条（応募作品）</h3>
+                            <p>1.応募作品は、応募者本人が撮影し、かつ、当該作品に関する一切の著作権を正当に有する、未公表のオリジナル作品に限るものとします。</p>
+                            <p>2.応募は、応募者1名につき1作品までとします。</p>
+                            <p>3.応募作品の色調補正、トリミングは可能としますが、著しい加工（合成、変形等）が施され、写真の真正性を損なうと主催者が判断した作品は、審査の対象外となることがあります。</p>
+                            <p>4.生成AI（画像生成AIを含みますが、これに限りません。）を用いて自動生成された画像は、応募の対象外とします。</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第5条（応募方法）</h3>
+                            <p>応募者は、情報学部自治会Webサイト上の応募フォームにアクセスし、所定の事項（ペンネームを含みます。）を記入の上、作品データをアップロードすることにより応募するものとします。</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第6条（審査及び賞）</h3>
+                            <p>1.応募作品は、主催者が任命する審査員により、厳正に審査されます。</p>
+                            <p>2.本コンテストに設ける賞は、以下のとおりとします。<br/>先生賞 5名<br/>自治会賞 1名</p>
+                            <p>3.受賞作品及び応募者が届け出たペンネームは、第2条第3項に定める場所において公表します。</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第7条（権利の帰属及び利用許諾）</h3>
+                            <p>1.応募作品の著作権は、応募者に帰属するものとします。</p>
+                            <p>2.応募者は、主催者に対し、応募作品を本コンテストの広報、記録、その他関連活動の目的で、情報学部自治会Webサイト、SNS、学内施設での展示において、無償かつ非独占的に使用（複製及び展示を含みます。）する権利を許諾するものとします。</p>
+                            <p>3.主催者は、前項に定める使用にあたり、応募者の承諾を得ることなく、応募作品のトリミングを行うことができるものとします。</p>
+                            <p>4.主催者は、応募作品の利用にあたり、応募者が届け出たペンネームを表示することができるものとします。</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第8条（表明保証）</h3>
+                            <p>応募者は、主催者に対し、応募作品が第三者の著作権、肖像権、プライバシー権、パブリシティ権その他一切の権利を侵害しないことを表明し、保証するものとします。</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第9条（肖像権等）</h3>
+                            <p>1.応募作品に、応募者以外の人物が含まれる場合、応募者は、当該人物から、本コンテストへの応募及び第7条に定める作品の利用について、事前の許諾を得るものとします。</p>
+                            <p>2.応募作品に関し、第三者との間で権利侵害その他の問題が生じた場合、主催者は一切の責任を負わず、応募者自身の責任と費用負担においてこれを解決するものとします。</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第10条（禁止事項）</h3>
+                            <p>応募者は、本コンテストへの応募にあたり、以下の各号に該当する行為またはそのおそれのある行為をしてはなりません。</p>
+                            <ul className="list-decimal list-inside pl-4 space-y-2">
+                                <li>法令または公序良俗に違反する行為</li>
+                                <li>本コンテストの運営を妨げる行為</li>
+                                <li>虚偽の内容で応募する行為</li>
+                                <li>その他、主催者が不適切と判断する行為</li>
+                            </ul>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第11条（免責事項）</h3>
+                            <p>1.主催者は、通信機器、通信回線、コンピュータ等の障害、または天災地変その他やむを得ない事由により、本コンテストの全部または一部を中断または中止することができるものとします。</p>
+                            <p>2.主催者は、本コンテストへの応募または応募できなかったことによって応募者に生じたいかなる損害についても、主催者の故意または重過失による場合を除き、一切の責任を負わないものとします。</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第12条（個人情報の取扱い）</h3>
+                            <p>主催者は、応募者から提供された個人情報を、本コンテストの運営（応募者への連絡、審査、結果発表、問い合わせ対応等）に必要な範囲でのみ利用し、個人情報の保護に関する法律その他関連法令を遵守し、適切に取り扱うものとします。</p>
+                            <h3 className="font-bold pt-4 text-lg text-gray-900">第13条（規約の変更）</h3>
+                            <p>主催者は、必要と判断した場合、応募者への事前の通知なく本規約を変更できるものとします。本規約の変更後、応募者が本コンテストへの応募を継続した場合は、変更後の規約に同意したものとみなします。</p>
+                        </div>
+                    )}
                 </div>
-            </div>
+            </main>
         </div>
     );
 }
 
-export default PhotoContestPage;
+export default App;
+
+
