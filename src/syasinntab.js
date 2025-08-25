@@ -90,7 +90,7 @@ function App() {
     useEffect(() => {
         const checkSubmissionPeriod = () => {
             const now = new Date();
-            // Define the start and end dates for submissions.
+            // Define the start and end dates for submissions in JST.
             const startDate = new Date('2025-09-12T00:00:00+09:00');
             const endDate = new Date('2025-09-19T23:59:59+09:00');
             setIsAccepting(now >= startDate && now <= endDate);
@@ -164,10 +164,10 @@ function App() {
                         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-3">
                             イロセカ - Photo Contest
                         </h1>
-                        {/* Speech Bubble */}
-                        <div className="absolute -top-10 sm:-top-8 -right-12 sm:-right-20 transform rotate-12 bubble-animation">
+                        {/* Speech Bubble - Moved to the left */}
+                        <div className="absolute -top-10 sm:-top-8 -right-8 sm:-right-16 transform rotate-12 bubble-animation">
                             <div className="speech-bubble relative bg-pink-500 text-white text-sm sm:text-base font-bold py-2 px-4 rounded-lg shadow-lg">
-                                先生賞がもらえるかも！
+                            先生賞もあるよ！
                             </div>
                         </div>
                     </div>
@@ -193,17 +193,25 @@ function App() {
                         onClick={(e) => !isAccepting && e.preventDefault()}
                     >
                         <Send size={22} />
-                        {isAccepting ? '作品を応募する' : '募集期間中ではありません'}
+                        {isAccepting ? '作品を応募する' : '作品を応募する'}
                     </a>
                 </div>
 
-                {/* Notice for when submissions are not open */}
-                {!isAccepting && (
-                    <div className="mb-12 p-4 bg-yellow-100 text-yellow-800 border border-yellow-200 rounded-xl flex items-center justify-center gap-3 text-center">
-                        <Info size={20} className="flex-shrink-0"/>
-                        <p className="font-semibold">現在は募集期間外です。</p>
-                    </div>
-                )}
+                {/* Conditional Notice Area */}
+                <div className="mb-12">
+                    {!isAccepting ? (
+                        <div className="p-4 bg-yellow-100 text-yellow-800 border border-yellow-200 rounded-xl flex items-center justify-center gap-3 text-center">
+                            <Info size={20} className="flex-shrink-0"/>
+                            <p className="font-semibold">現在は募集期間外です。</p>
+                        </div>
+                    ) : (
+                        <div className="p-4 bg-blue-100 text-blue-800 border border-blue-200 rounded-xl flex items-center justify-center gap-3 text-center">
+                            <Info size={20} className="flex-shrink-0"/>
+                            <p className="font-semibold">応募は１人１作品までです。</p>
+                        </div>
+                    )}
+                </div>
+
 
                 {/* Tab Navigation */}
                 <div className="flex justify-center mb-12 space-x-4 sm:space-x-8 border-b border-gray-200">
@@ -225,6 +233,14 @@ function App() {
                     {activeContent === 'overview' && (
                         <div className="text-left space-y-10 p-4">
                             <h2 className="font-bold text-3xl text-center text-gray-900">開催概要</h2>
+                            
+                            <div className="text-center text-gray-700 leading-relaxed space-y-4">
+                                <p>情報学部自治会によるフォトコンテストを開催します！</p>
+                                <p>テーマは「夏の思い出」。夏休みに撮った写真をウェブサイトの応募フォームから投稿してください！</p>
+                                <p>集まった写真の中から、先生方が選ぶ<strong>先生賞</strong>と、自治会が選ぶ<strong>自治会賞</strong>を決定します。受賞作品は 情報学部自治会Webサイトで発表されるほか、i-COREにて展示されます。</p>
+                                <p className="font-semibold">みなさんの夏を彩る一枚をお待ちしています！</p>
+                            </div>
+
                             <div className="grid grid-cols-2 gap-4 sm:gap-8 text-center">
                                 <div className="space-y-3 p-6 bg-gray-50 rounded-lg">
                                     <Users className="text-indigo-500 mx-auto" size={40} />
@@ -244,7 +260,7 @@ function App() {
                                         <li><strong>テーマ:</strong> 「夏の思い出」</li>
                                         <li><strong>応募期間:</strong> 2025年9月12日 〜 9月19日</li>
                                         <li><strong>発表期間:</strong> 2025年10月1日 〜 10月7日</li>
-                                        <li><strong>作品展示:</strong> 入賞作品はi-coreにて約1週間プロジェクターを使い投影します。</li>
+                                        <li><strong>作品展示:</strong> 受賞作品は情報学部自治会Webサイトで発表されるほか、i-COREにて約1週間プロジェクターを使い投影します。</li>
                                         <li><strong>主催:</strong> 近畿大学情報学部自治会</li>
                                     </ul>
                                 </div>
