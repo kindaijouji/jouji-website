@@ -6,6 +6,7 @@ import { Camera, Info, ChevronDown, ChevronUp, Image as ImageIcon, FileText, Awa
 // It includes a button to expand or collapse the gallery and a modal to view images.
 function PhotoGallery() {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null); // State to track the selected image for the modal
 
     // Array of sample image paths.
     const sampleImages = [
