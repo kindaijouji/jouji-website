@@ -237,7 +237,7 @@ function App() {
                             <div className="text-center text-gray-700 leading-relaxed space-y-4">
                                 <p>情報学部自治会によるフォトコンテストを開催します！</p>
                                 <p>テーマは「夏の思い出」。夏休みに撮った写真をウェブサイトの応募フォームから投稿してください！</p>
-                                <p>集まった写真の中から、先生方が選ぶ<strong>先生賞</strong>と、自治会が選ぶ<strong>自治会賞</strong>を決定します。受賞作品は 情報学部自治会Webサイトで発表されるほか、i-COREにてプロジェークターを使い投影します。</p>
+                                <p>集まった写真の中から、先生方が選ぶ<strong>先生賞</strong>と、自治会が選ぶ<strong>自治会賞</strong>を決定します。受賞作品は情報学部自治会Webサイトで発表されるほか、i-COREにてプロジェクターを使い投影します。</p>
                                 <p className="font-semibold">みなさんの夏を彩る一枚をお待ちしています！</p>
                             </div>
 
