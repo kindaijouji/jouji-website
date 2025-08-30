@@ -90,6 +90,7 @@ function App() {
     useEffect(() => {
         const checkSubmissionPeriod = () => {
             const now = new Date();
+
             // Define the start and end dates for submissions in JST.
             const startDate = new Date('2025-09-12T00:00:00+09:00');
             const endDate = new Date('2025-09-19T23:59:59+09:00');
@@ -164,6 +165,7 @@ function App() {
                         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-3">
                             イロセカ - Photo Contest
                         </h1>
+
                         {/* Speech Bubble - Moved to the left */}
                         <div className="absolute -top-10 sm:-top-8 -right-8 sm:-right-16 transform rotate-12 bubble-animation">
                             <div className="speech-bubble relative bg-pink-500 text-white text-sm sm:text-base font-bold py-2 px-4 rounded-lg shadow-lg">
@@ -193,6 +195,7 @@ function App() {
                         onClick={(e) => !isAccepting && e.preventDefault()}
                     >
                         <Send size={22} />
+
                         {isAccepting ? '作品を応募する' : '作品を応募する'}
                     </a>
                 </div>
@@ -211,7 +214,6 @@ function App() {
                         </div>
                     )}
                 </div>
-
 
                 {/* Tab Navigation */}
                 <div className="flex justify-center mb-12 space-x-4 sm:space-x-8 border-b border-gray-200">
@@ -233,6 +235,7 @@ function App() {
                     {activeContent === 'overview' && (
                         <div className="text-left space-y-10 p-4">
                             <h2 className="font-bold text-3xl text-center text-gray-900">開催概要</h2>
+
                             
                             <div className="text-center text-gray-700 leading-relaxed space-y-4">
                                 <p>情報学部自治会によるフォトコンテストを開催します！</p>
