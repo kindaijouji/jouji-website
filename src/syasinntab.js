@@ -263,6 +263,7 @@ function App() {
                                         <li><strong>テーマ:</strong> 「夏の思い出」</li>
                                         <li><strong>応募期間:</strong> <strong className="text-red-600">2025年9月12日 〜 9月19日</strong></li>
                                         <li><strong>発表期間:</strong> <strong className="text-red-600">2025年10月1日 〜 10月7日</strong></li>
+                                        <li><strong>先生賞:</strong> 水谷先生賞、半田先生賞、柏崎先生賞、山元先生賞など</li>
                                         <li><strong>作品展示:</strong> 受賞作品は i-COREで約1週間、プロジェクターを使って投影します。さらに、情報学部自治会Webサイトにも掲載され、イベント終了後も「過去の受賞作品」として閲覧できます。</li>
                                         <li><strong>主催:</strong> 近畿大学情報学部自治会</li>
                                     </ul>
