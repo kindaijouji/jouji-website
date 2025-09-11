@@ -184,7 +184,7 @@ function App() {
                 {/* Submission Button */}
                 <div className="text-center mb-12">
                      <a 
-                        href={isAccepting ? "https://docs.google.com/forms/d/e/1FAIpQLScF7-HaNXUCYmE477S0XpZzdfb1F6ggaSCQm8AUCQwicADG9w/viewform?usp=header" : undefined}
+                        href={isAccepting ? "https://docs.google.com/forms/d/e/1FAIpQLSdH3x5zpgtLLqQCGd0WkdWQIm07xEJokzrPdnjZOxFOKqfK9w/viewform?usp=dialog" : undefined}
                         target="_blank" 
                         rel="noopener noreferrer"
                         className={`inline-flex items-center gap-3 font-bold text-lg py-4 px-10 rounded-full shadow-lg transition-all transform ${
