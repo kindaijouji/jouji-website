@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>Redirecting...</title>
-    <script>
-      // 現在のパスを取得
-      const path = window.location.pathname;
-      // React の index.html にリダイレクト（パス情報をクエリに入れる）
-      window.location.replace('/?' + path);
+    <script type="text/javascript">
+      // 現在のパス、クエリ、ハッシュを取得
+      var path = window.location.pathname + window.location.search + window.location.hash;
+      // index.html にリダイレクト（元パスをクエリに格納）
+      window.location.href = '/index.html?redirect=' + encodeURIComponent(path);
     </script>
   </head>
   <body>
