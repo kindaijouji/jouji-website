@@ -19,6 +19,8 @@ function PhotoGallery() {
         "/Picture/sample12.jpg",
         "/Picture/sample13.jpg",
         "/Picture/sample14.jpg",
+        "/Picture/KKK.jpeg",
+        "/Picture/フグ.jpg",
     ];
     // Toggles the expanded state of the gallery.
     const toggleGallery = () => setIsExpanded(prev => !prev);
