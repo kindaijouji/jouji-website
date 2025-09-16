@@ -21,6 +21,16 @@ function PhotoGallery() {
         "/Picture/sample14.jpg",
         "/Picture/KKK.jpeg",
         "/Picture/フグ.jpg",
+        "/Picture/Satsuki.jpeg",
+        "/Picture/yamap.jpg",
+        "/Picture/くっきー.jpeg",
+        "/Picture/ぱゃ.jpeg",
+        "/Picture/ファイアワークス.jpeg",
+        "/Picture/ぽんず.jpeg",
+        "/Picture/れこれこ.jpeg",
+        "/Picture/単位ナイナイ.jpeg",
+        "/Picture/浮世.jpeg",
+        "/Picture/名声.jpeg",
     ];
     // Toggles the expanded state of the gallery.
     const toggleGallery = () => setIsExpanded(prev => !prev);
