@@ -10,15 +10,6 @@ function PhotoGallery() {
 
     // Array of sample image paths.
     const sampleImages = [
-        "/Picture/sample6.jpg",
-        "/Picture/sample15.jpg",
-        "/Picture/sample8.jpg",
-        "/Picture/sample9.jpg",
-        "/Picture/sample10.jpg",
-        "/Picture/sample11.jpg",
-        "/Picture/sample12.jpg",
-        "/Picture/sample13.jpg",
-        "/Picture/sample14.jpg",
         "/Picture/KKK.jpeg",
         "/Picture/フグ.jpg",
         "/Picture/Satsuki.jpeg",
@@ -31,6 +22,17 @@ function PhotoGallery() {
         "/Picture/単位ナイナイ.jpeg",
         "/Picture/浮世.jpeg",
         "/Picture/名声.jpeg",
+        "/Picture/٩( ᐛ )و.jpeg",
+        "/Picture/10秒.jpeg",
+        "/Picture/pullriku.jpeg",
+        "/Picture/Sasaki.jpeg",
+        "/Picture/カイト.jpeg",
+        "/Picture/ガッシュ.jpeg",
+        "/Picture/トマト.jpeg",
+        "/Picture/むわ.jpeg",
+        "/Picture/携帯が死ぬ0.5秒前.jpg",
+        "/Picture/限界小学生.jpeg",
+        "/Picture/校内4位.jpeg",
     ];
     // Toggles the expanded state of the gallery.
     const toggleGallery = () => setIsExpanded(prev => !prev);
