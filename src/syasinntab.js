@@ -33,6 +33,18 @@ function PhotoGallery() {
         "/Picture/携帯が死ぬ0.5秒前.jpg",
         "/Picture/限界小学生.jpeg",
         "/Picture/校内4位.jpeg",
+        "/Picture/1_3の純情な分譲.jpg",
+        "/Picture/7屋敷.jpg",
+        "/Picture/うっかり呑ん兵衛.jpeg",
+        "/Picture/じょん.jpeg",
+        "/Picture/チコぴ.jpg",
+        "/Picture/つきのわぐま.jpeg",
+        "/Picture/ろ.jpg",
+        "/Picture/わらびもち.jpeg",
+        "/Picture/わわ.jpeg",
+        "/Picture/愛をこめて札束を.jpg",
+        "/Picture/割とギリギリス.jpeg",
+        "/Picture/生意気なだてまき.jpeg",
     ];
     // Toggles the expanded state of the gallery.
     const toggleGallery = () => setIsExpanded(prev => !prev);
