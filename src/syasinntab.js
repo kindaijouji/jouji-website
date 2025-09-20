@@ -228,31 +228,14 @@ function App() {
 
             {/* Content Section */}
             <main className="px-4 pb-4 md:px-8 md:pb-8 max-w-5xl mx-auto">
-                {/* Submission Button */}
-                <div className="text-center mb-12">
-                     <a 
-                        href={isAccepting ? "https://docs.google.com/forms/d/e/1FAIpQLSdH3x5zpgtLLqQCGd0WkdWQIm07xEJokzrPdnjZOxFOKqfK9w/viewform?usp=dialog" : undefined}
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-3 font-bold text-lg py-4 px-10 rounded-full shadow-lg transition-all transform ${
-                            isAccepting
-                                ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:scale-105 active:scale-100'
-                                : 'bg-gray-400 text-white/80 cursor-not-allowed'
-                        }`}
-                        onClick={(e) => !isAccepting && e.preventDefault()}
-                    >
-                        <Send size={22} />
-
-                        {isAccepting ? '作品を応募する' : '作品を応募する'}
-                    </a>
-                </div>
 
                 {/* Conditional Notice Area */}
                 <div className="mb-12">
                     {!isAccepting ? (
-                        <div className="p-4 bg-yellow-100 text-yellow-800 border border-yellow-200 rounded-xl flex items-center justify-center gap-3 text-center">
-                            <Info size={20} className="flex-shrink-0"/>
-                            <p className="font-semibold">現在は募集期間外です。</p>
+                        <div className="p-4 bg-pink-50 text-pink-800 border-2 border-pink-200 border-dashed rounded-xl flex items-center justify-center gap-3 text-center shadow-lg shadow-pink-100/50">
+                            <Info size={20} className="flex-shrink-0 text-pink-500"/>
+                            <p className="font-semibold">たくさんのご応募、本当にありがとうございました！<br></br> 現在は選定期間ですので、結果発表までお待ちください！
+                            </p>
                         </div>
                     ) : (
                         <div className="p-4 bg-blue-100 text-blue-800 border border-blue-200 rounded-xl flex items-center justify-center gap-3 text-center">
@@ -374,5 +357,8 @@ function App() {
 }
 
 export default App;
+
+
+
 
 
