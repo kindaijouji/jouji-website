@@ -33,6 +33,39 @@ function PhotoGallery() {
         "/Picture/携帯が死ぬ0.5秒前.jpg",
         "/Picture/限界小学生.jpeg",
         "/Picture/校内4位.jpeg",
+        "/Picture/1_3の純情な分譲.jpg",
+        "/Picture/7屋敷.jpg",
+        "/Picture/うっかり呑ん兵衛.jpeg",
+        "/Picture/じょん.jpeg",
+        "/Picture/チコぴ.jpg",
+        "/Picture/つきのわぐま.jpeg",
+        "/Picture/ろ.jpg",
+        "/Picture/わらびもち.jpeg",
+        "/Picture/わわ.jpeg",
+        "/Picture/愛をこめて札束を.jpg",
+        "/Picture/割とギリギリス.jpeg",
+        "/Picture/生意気なだてまき.jpeg",
+        "/Picture/76.jpeg",
+        "/Picture/kk.jpeg",
+        "/Picture/VAN.jpg",
+        "/Picture/イッヌ.jpg",
+        "/Picture/えぼ.jpeg",
+        "/Picture/おちゃ.jpg",
+        "/Picture/カスミソウ.jpeg",
+        "/Picture/ガムシロップ.jpg",
+        "/Picture/かめ.jpeg",
+        "/Picture/ぎこ.jpeg",
+        "/Picture/けけけ.jpg",
+        "/Picture/コミャク.jpeg",
+        "/Picture/だわゆ.jpg",
+        "/Picture/つゆ.png",
+        "/Picture/のこのこ.jpeg",
+        "/Picture/はる☘️.jpg",
+        "/Picture/ゆうり.jpg",
+        "/Picture/祝ってくれ.jpg",
+        "/Picture/梅田.jpeg",
+        "/Picture/名刀ぽこぽこ丸.jpg",
+        "/Picture/夜凪.jpeg",
     ];
     // Toggles the expanded state of the gallery.
     const toggleGallery = () => setIsExpanded(prev => !prev);
@@ -195,31 +228,14 @@ function App() {
 
             {/* Content Section */}
             <main className="px-4 pb-4 md:px-8 md:pb-8 max-w-5xl mx-auto">
-                {/* Submission Button */}
-                <div className="text-center mb-12">
-                     <a 
-                        href={isAccepting ? "https://docs.google.com/forms/d/e/1FAIpQLSdH3x5zpgtLLqQCGd0WkdWQIm07xEJokzrPdnjZOxFOKqfK9w/viewform?usp=dialog" : undefined}
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-3 font-bold text-lg py-4 px-10 rounded-full shadow-lg transition-all transform ${
-                            isAccepting
-                                ? 'bg-indigo-600 text-white hover:bg-indigo-700 hover:scale-105 active:scale-100'
-                                : 'bg-gray-400 text-white/80 cursor-not-allowed'
-                        }`}
-                        onClick={(e) => !isAccepting && e.preventDefault()}
-                    >
-                        <Send size={22} />
-
-                        {isAccepting ? '作品を応募する' : '作品を応募する'}
-                    </a>
-                </div>
 
                 {/* Conditional Notice Area */}
                 <div className="mb-12">
                     {!isAccepting ? (
-                        <div className="p-4 bg-yellow-100 text-yellow-800 border border-yellow-200 rounded-xl flex items-center justify-center gap-3 text-center">
-                            <Info size={20} className="flex-shrink-0"/>
-                            <p className="font-semibold">現在は募集期間外です。</p>
+                        <div className="p-4 bg-pink-50 text-pink-800 border-2 border-pink-200 border-dashed rounded-xl flex items-center justify-center gap-3 text-center shadow-lg shadow-pink-100/50">
+                            <Info size={20} className="flex-shrink-0 text-pink-500"/>
+                            <p className="font-semibold">たくさんのご応募、本当にありがとうございました！<br></br> 現在は選定期間ですので、結果発表までお待ちください！
+                            </p>
                         </div>
                     ) : (
                         <div className="p-4 bg-blue-100 text-blue-800 border border-blue-200 rounded-xl flex items-center justify-center gap-3 text-center">
@@ -341,5 +357,8 @@ function App() {
 }
 
 export default App;
+
+
+
 
 
