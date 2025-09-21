@@ -85,7 +85,8 @@ const UmbrellaLendingCalendar = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4 sm:p-6 bg-blue-50 rounded-lg shadow-lg max-w-2xl mx-auto text-sm sm:text-base">
+    <div className="flex flex-col items-center p-4 sm:p-6 w-full text-sm sm:text-base">
+
       {/* 貸し出し場所 */}
             <h1 className="text-xl sm:text-2xl font-bold mb-6 text-center text-blue-700">貸し出し場所のご案内</h1>
 
