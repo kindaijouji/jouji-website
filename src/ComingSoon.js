@@ -10,8 +10,8 @@ function ComingSoon() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white p-4 pt-16">
-            <div className="bg-white rounded-2xl shadow-xl max-w-3xl w-full p-8 text-center">
+        <div className="min-h-screen flex items-center justify-center bg-blue-50 p-4 pt-16">
+            <div className="w-full px-4 md:px-8 py-8 text-center">
                 {/* アイコンとタイトル */}
                 <div className="mb-8">
                     <Umbrella size={64} className="mx-auto text-blue-600" />
