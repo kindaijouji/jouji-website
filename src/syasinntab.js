@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, Info, ChevronDown, ChevronUp, Image as ImageIcon, FileText, Award, Users, Shield, Send, X } from 'lucide-react';
+import { Camera, Info, ChevronDown, ChevronUp, Image as ImageIcon, FileText, Award, Users, Shield, X } from 'lucide-react';
 
 // --- サンプルのギャラリーコンポーネント ---
 // This component displays a grid of sample photos.
@@ -77,17 +77,17 @@ function PhotoGallery() {
             {/* The number of columns now adjusts based on screen width for better responsiveness. */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
                 {imagesToShow.map((src, index) => (
-                    <div 
-                        key={index} 
+                    <div
+                        key={index}
                         className="overflow-hidden rounded-xl shadow-lg group flex items-center justify-center bg-gray-100 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-200/50 hover:-translate-y-2 cursor-pointer"
                         onClick={() => setSelectedImage(src)} // Set the selected image on click
                     >
-                        <img 
-                            src={src} 
+                        <img
+                            src={src}
                             alt={`サンプル作品 ${index + 1}`}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                             // Fallback image in case the original fails to load.
-                            onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/400x300/e2e8f0/4a5568?text=Image+Not+Found'; }}
+                            onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/400x300/e2e8f0/4a5568?text=Image+Not+Found'; }}
                         />
                     </div>
                 ))}
@@ -104,17 +104,17 @@ function PhotoGallery() {
 
             {/* Modal for displaying the selected image */}
             {selectedImage && (
-                <div 
+                <div
                     className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 p-4 transition-opacity duration-300"
                     onClick={() => setSelectedImage(null)} // Click background to close
                 >
-                    <img 
-                        src={selectedImage} 
-                        alt="拡大表示" 
+                    <img
+                        src={selectedImage}
+                        alt="拡大表示"
                         className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
                         onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking the image itself
                     />
-                     <button 
+                    <button
                         className="absolute top-5 right-5 text-white hover:text-gray-300 transition-colors"
                         onClick={() => setSelectedImage(null)}
                     >
@@ -132,7 +132,7 @@ function PhotoGallery() {
 function App() {
     const [activeContent, setActiveContent] = useState('gallery');
     const [isAccepting, setIsAccepting] = useState(false);
-    
+
     // Effect to check if the current date is within the submission period.
     useEffect(() => {
         const checkSubmissionPeriod = () => {
@@ -148,11 +148,10 @@ function App() {
 
     // Helper function to generate class names for tabs based on active state.
     const getTabClassName = (contentName) => {
-        return `flex items-center justify-center gap-2 px-3 py-3 font-bold transition-all duration-300 ${
-            activeContent === contentName 
-                ? 'text-indigo-600 border-b-2 border-indigo-600' 
+        return `flex items-center justify-center gap-2 px-3 py-3 font-bold transition-all duration-300 ${activeContent === contentName
+                ? 'text-indigo-600 border-b-2 border-indigo-600'
                 : 'text-gray-500 hover:text-indigo-600'
-        }`;
+            }`;
     };
 
     return (
@@ -203,9 +202,9 @@ function App() {
 
             {/* Header Section */}
             <header className="relative w-full text-center pt-24 pb-6 sm:pt-32 sm:pb-8">
-                 <div className="relative z-10 px-4">
+                <div className="relative z-10 px-4">
                     <div className="mb-6 float-animation text-pink-500">
-                        <Camera size={72} className="mx-auto drop-shadow-lg" strokeWidth={1.5}/>
+                        <Camera size={72} className="mx-auto drop-shadow-lg" strokeWidth={1.5} />
                     </div>
                     {/* Title container for positioning the speech bubble */}
                     <div className="relative inline-block mx-auto">
@@ -216,7 +215,7 @@ function App() {
                         {/* Speech Bubble - Moved to the left */}
                         <div className="absolute -top-10 sm:-top-8 -right-8 sm:-right-16 transform rotate-12 bubble-animation">
                             <div className="speech-bubble relative bg-pink-500 text-white text-sm sm:text-base font-bold py-2 px-4 rounded-lg shadow-lg">
-                            先生賞もあるよ！
+                                先生賞もあるよ！
                             </div>
                         </div>
                     </div>
@@ -233,13 +232,13 @@ function App() {
                 <div className="mb-12">
                     {!isAccepting ? (
                         <div className="p-4 bg-pink-50 text-pink-800 border-2 border-pink-200 border-dashed rounded-xl flex items-center justify-center gap-3 text-center shadow-lg shadow-pink-100/50">
-                            <Info size={20} className="flex-shrink-0 text-pink-500"/>
+                            <Info size={20} className="flex-shrink-0 text-pink-500" />
                             <p className="font-semibold">たくさんのご応募、本当にありがとうございました！<br></br> 現在は選定期間ですので、結果発表までお待ちください！
                             </p>
                         </div>
                     ) : (
                         <div className="p-4 bg-blue-100 text-blue-800 border border-blue-200 rounded-xl flex items-center justify-center gap-3 text-center">
-                            <Info size={20} className="flex-shrink-0"/>
+                            <Info size={20} className="flex-shrink-0" />
                             <p className="font-semibold">応募は１人１作品までです。</p>
                         </div>
                     )}
@@ -254,19 +253,19 @@ function App() {
                         <Award size={18} /> 開催概要
                     </button>
                     <button onClick={() => setActiveContent('rules')} className={getTabClassName('rules')}>
-                       <FileText size={18} /> 応募規約
+                        <FileText size={18} /> 応募規約
                     </button>
                 </div>
 
                 {/* Displayed Content based on active tab */}
                 <div className="fade-in">
                     {activeContent === 'gallery' && <PhotoGallery />}
-                    
+
                     {activeContent === 'overview' && (
                         <div className="text-left space-y-10 p-4">
                             <h2 className="font-bold text-3xl text-center text-gray-900">開催概要</h2>
 
-                            
+
                             <div className="text-center text-gray-700 leading-relaxed space-y-4">
                                 <p>情報学部自治会によるフォトコンテストを開催します！</p>
                                 <p>テーマは「夏の思い出」。夏休みに撮った写真をウェブサイトの応募フォームから投稿してください！</p>
@@ -309,7 +308,7 @@ function App() {
                             <h3 className="font-bold pt-4 text-lg text-gray-900">第1条（応募資格）</h3>
                             <p>本コンテストに応募できる者は、近畿大学の学生、教職員、その他主催者が別途定める大学関係者に限るものとします。</p>
                             <h3 className="font-bold pt-4 text-lg text-gray-900">第2条（コンテストの期間及び場所）</h3>
-                            <p>本コンテストの期間及び場所は、以下のとおりとします。<br/>応募期間: 2025年9月12日（金）から2025年9月19日（金）まで<br/>結果発表期間: 2025年10月1日（水）から2025年10月7日（火）まで<br/>発表場所: i-CORE 及び 情報学部自治会Webサイト</p>
+                            <p>本コンテストの期間及び場所は、以下のとおりとします。<br />応募期間: 2025年9月12日（金）から2025年9月19日（金）まで<br />結果発表期間: 2025年10月1日（水）から2025年10月7日（火）まで<br />発表場所: i-CORE 及び 情報学部自治会Webサイト</p>
                             <h3 className="font-bold pt-4 text-lg text-gray-900">第3条（テーマ）</h3>
                             <p>本コンテストのテーマは「夏の思い出」とします。応募者は、当該テーマに沿った作品を応募するものとします。</p>
                             <h3 className="font-bold pt-4 text-lg text-gray-900">第4条（応募作品）</h3>
@@ -321,7 +320,7 @@ function App() {
                             <p>応募者は、情報学部自治会Webサイト上の応募フォームにアクセスし、所定の事項（ペンネームを含みます。）を記入の上、作品データをアップロードすることにより応募するものとします。</p>
                             <h3 className="font-bold pt-4 text-lg text-gray-900">第6条（審査及び賞）</h3>
                             <p>1.応募作品は、主催者が任命する審査員により、厳正に審査されます。</p>
-                            <p>2.本コンテストに設ける賞は、以下のとおりとします。<br/><br/>水谷先生賞1名、半田先生賞1名、柏崎先生賞1名、山元先生賞1名、その他先生賞2名、自治会賞 1名</p>
+                            <p>2.本コンテストに設ける賞は、以下のとおりとします。<br /><br />水谷先生賞1名、半田先生賞1名、柏崎先生賞1名、山元先生賞1名、その他先生賞2名、自治会賞 1名</p>
                             <p>3.受賞作品及び応募者が届け出たペンネームは、第2条第3項に定める場所において公表します。</p>
                             <h3 className="font-bold pt-4 text-lg text-gray-900">第7条（権利の帰属及び利用許諾）</h3>
                             <p>1.応募作品の著作権は、応募者に帰属するものとします。</p>
