@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+// import { ArrowRight } from 'lucide-react';
+// import { Link } from 'react-router-dom';
 
 /*const HomeHeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -102,7 +102,7 @@ const HomeHeroSection = () => {
 
       {/* テキストとボタンを配置するコンテナです。flex-colで縦に並べます。 */}
       <div className="relative h-full flex flex-col items-center z-10">
-        
+
         {/* このラッパーが縦方向の余白を全て使い、中のh1要素を中央に配置します。 */}
         <div className="flex-grow flex flex-col items-center justify-center">
           <h1

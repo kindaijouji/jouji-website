@@ -1,10 +1,10 @@
-import { Calendar} from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Syashin() {
   const navigate = useNavigate();
-  
+
   //ComingSoonへと飛ばす関数
   const handleButtonClick = () => {
     navigate('/iroseka'); //TODO
@@ -18,8 +18,8 @@ function Syashin() {
           <div>
             <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">イロセカ　〜情報学部写真大会〜</h3>
             <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
-              夏休みの思い出の写真を共有しませんか？<br/>
-              応募フォームから写真を提出するだけで参加できます！<br/>
+              夏休みの思い出の写真を共有しませんか？<br />
+              応募フォームから写真を提出するだけで参加できます！<br />
               情報学部の先生方から賞も貰えるかも…！？
             </p>
             <div className="space-y-3 mb-5 sm:mb-6">
@@ -33,7 +33,7 @@ function Syashin() {
               </div>
             </div>
 
-            <button 
+            <button
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg inline-flex items-center text-sm sm:text-base"
               onClick={handleButtonClick}>
               詳細はこちら
