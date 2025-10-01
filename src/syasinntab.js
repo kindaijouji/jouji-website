@@ -244,7 +244,7 @@ function App() {
             const now = new Date();
             const startDate = new Date('2025-09-12T00:00:00+09:00');
             const endDate = new Date('2025-09-19T23:59:59+09:00');
-            setIsAccepting(now >= startDate && now <= endDate);
+            //setIsAccepting(now >= startDate && now <= endDate);
         };
         checkSubmissionPeriod();
     }, []);
