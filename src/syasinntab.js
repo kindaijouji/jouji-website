@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, Info, ChevronDown, ChevronUp, Image as ImageIcon, FileText, Award, Users, Shield, Send, X, Trophy } from 'lucide-react';
+import { Camera, Info, ChevronDown, ChevronUp, Image as ImageIcon, FileText, Award, Users, Shield, X, Trophy } from 'lucide-react';
 
 
 
@@ -113,13 +113,13 @@ function PhotoGallery() {
                 >
 
                     <div className="relative">
-                        <img 
-                            src={selectedImage} 
-                            alt="拡大表示" 
+                        <img
+                            src={selectedImage}
+                            alt="拡大表示"
                             className="max-w-full max-h-screen object-contain rounded-lg shadow-2xl p-8"
                             onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking the image itself
                         />
-                        <button 
+                        <button
                             className="absolute top-2 right-2 text-white hover:text-gray-300 transition-colors"
                             onClick={() => setSelectedImage(null)}
                         >
@@ -181,17 +181,17 @@ function AwardedWorks() {
                     <div className="mb-8">
                         <h3 className="text-3xl font-bold text-center text-indigo-600">{winner.awardName}</h3>
                     </div>
-                    
+
                     <div className="w-full max-w-2xl">
-                        <div 
+                        <div
                             className="overflow-hidden rounded-xl shadow-lg group cursor-pointer mb-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
                             onClick={() => setSelectedImage(winner.imageSrc)}
                         >
-                            <img 
-                                src={winner.imageSrc} 
+                            <img
+                                src={winner.imageSrc}
                                 alt={`${winner.awardName} 受賞作品: ${winner.title}`}
                                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/600x400/e2e8f0/4a5568?text=Image+Not+Found'; }}
+                                onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/600x400/e2e8f0/4a5568?text=Image+Not+Found'; }}
                             />
                         </div>
                         <div className="flex flex-col justify-center space-y-4 px-2">
@@ -206,18 +206,18 @@ function AwardedWorks() {
 
             {/* Modal for displaying the selected image */}
             {selectedImage && (
-                <div 
+                <div
                     className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 p-4 transition-opacity duration-300"
                     onClick={() => setSelectedImage(null)} // Click background to close
                 >
-                     <div className="relative">
-                        <img 
-                            src={selectedImage} 
-                            alt="拡大表示" 
+                    <div className="relative">
+                        <img
+                            src={selectedImage}
+                            alt="拡大表示"
                             className="max-w-full max-h-screen object-contain rounded-lg shadow-2xl p-8"
                             onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking the image itself
                         />
-                        <button 
+                        <button
                             className="absolute top-2 right-2 text-white hover:text-gray-300 transition-colors"
                             onClick={() => setSelectedImage(null)}
                         >
@@ -236,7 +236,7 @@ function AwardedWorks() {
 // It manages the active tab and checks the submission period.
 function App() {
     const [activeContent, setActiveContent] = useState('awarded'); // Default to awarded works
-    const [isAccepting, setIsAccepting] = useState(false);
+    //const [isAccepting, setIsAccepting] = useState(false);
 
     // Effect to check if the current date is within the submission period.
     useEffect(() => {
@@ -252,8 +252,8 @@ function App() {
     // Helper function to generate class names for tabs based on active state.
     const getTabClassName = (contentName) => {
         return `flex items-center justify-center gap-2 px-3 py-3 font-bold transition-all duration-300 ${activeContent === contentName
-                ? 'text-indigo-600 border-b-2 border-indigo-600'
-                : 'text-gray-500 hover:text-indigo-600'
+            ? 'text-indigo-600 border-b-2 border-indigo-600'
+            : 'text-gray-500 hover:text-indigo-600'
             }`;
     };
 
@@ -333,8 +333,8 @@ function App() {
 
                 {/* Conditional Notice Area */}
                 <div className="mb-12">
-                     <div className="p-4 bg-pink-50 text-pink-800 border-2 border-pink-200 border-dashed rounded-xl flex items-center justify-center gap-3 text-center shadow-lg shadow-pink-100/50">
-                        <Trophy size={20} className="flex-shrink-0 text-pink-500"/>
+                    <div className="p-4 bg-pink-50 text-pink-800 border-2 border-pink-200 border-dashed rounded-xl flex items-center justify-center gap-3 text-center shadow-lg shadow-pink-100/50">
+                        <Trophy size={20} className="flex-shrink-0 text-pink-500" />
                         <p className="font-semibold">たくさんのご応募、本当にありがとうございました！</p>
                     </div>
 
@@ -342,7 +342,7 @@ function App() {
 
                 {/* Tab Navigation */}
                 <div className="flex justify-center mb-12 space-x-2 sm:space-x-8 border-b border-gray-200">
-                     <button onClick={() => setActiveContent('awarded')} className={getTabClassName('awarded')}>
+                    <button onClick={() => setActiveContent('awarded')} className={getTabClassName('awarded')}>
                         <Trophy size={18} /> 受賞作品
                     </button>
                     <button onClick={() => setActiveContent('gallery')} className={getTabClassName('gallery')}>
@@ -353,7 +353,7 @@ function App() {
                     </button>
                     <button onClick={() => setActiveContent('rules')} className={getTabClassName('rules')}>
 
-                    <FileText size={18} /> 応募規約
+                        <FileText size={18} /> 応募規約
 
                     </button>
                 </div>
