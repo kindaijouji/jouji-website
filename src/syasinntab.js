@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, Info, ChevronDown, ChevronUp, Image as ImageIcon, FileText, Award, Users, Shield, X } from 'lucide-react';
+import { Camera, Info, ChevronDown, ChevronUp, Image as ImageIcon, FileText, Award, Users, Shield, Send, X, Trophy } from 'lucide-react';
+
+
+
 
 // --- サンプルのギャラリーコンポーネント ---
 // This component displays a grid of sample photos.
@@ -108,18 +111,120 @@ function PhotoGallery() {
                     className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 p-4 transition-opacity duration-300"
                     onClick={() => setSelectedImage(null)} // Click background to close
                 >
-                    <img
-                        src={selectedImage}
-                        alt="拡大表示"
-                        className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-                        onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking the image itself
-                    />
-                    <button
-                        className="absolute top-5 right-5 text-white hover:text-gray-300 transition-colors"
-                        onClick={() => setSelectedImage(null)}
-                    >
-                        <X size={32} />
-                    </button>
+
+                    <div className="relative">
+                        <img 
+                            src={selectedImage} 
+                            alt="拡大表示" 
+                            className="max-w-full max-h-screen object-contain rounded-lg shadow-2xl p-8"
+                            onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking the image itself
+                        />
+                        <button 
+                            className="absolute top-2 right-2 text-white hover:text-gray-300 transition-colors"
+                            onClick={() => setSelectedImage(null)}
+                        >
+                            <X size={32} />
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
+// --- 受賞作品コンポーネント ---
+function AwardedWorks() {
+    const [selectedImage, setSelectedImage] = useState(null);
+    const winners = [
+        {
+            awardName: '水谷先生賞',
+            imageSrc: "/Picture/携帯が死ぬ0.5秒前.jpg",
+            title: '',
+            photographer: '携帯が死ぬ0.5秒前',
+            comment: '携帯が壊れるリスクなんて気にせずにシャッターを切った、海の夏らしさと青春の躍動感が詰まった瞬間だから。'
+        },
+        {
+            awardName: '半田先生賞',
+            imageSrc: '/Picture/Sasaki.jpeg',
+            title: '',
+            photographer: 'Sasaki',
+            comment: 'オーロラが綺麗に映っていたのと、友人が写り込んでいる構図が単なる風景写真では無くリアリティ、物語性を感じました'
+        },
+        {
+            awardName: '柏崎先生賞',
+            imageSrc: '/Picture/限界小学生.jpeg',
+            title: '',
+            photographer: '限界小学生',
+            comment: '次の３点で評価させていただきました。・レイアウト・絵としての饒舌さ・色彩コントラストなど細かいところ。　　　　　　　　　　　　　　　　　　　　　　　　　　　　まずざっと全部を拝見させていただいた時に『すごくレイアウトを意識しているな！』という作品がいくつかありました。わざとずらした構図の撮り方もあってそういうのも好きです。そういうのも含めてレイアウトを考えているな〜というのは高く評価しました。それから絵だけで説明できている作品はやはり強いです。感動を理解するのに他の文章を必要としないのは一枚の絵として完成度に寄与します。最後に、コントラストや色彩といった細かいところを評価させてもらいました。'
+        },
+        {
+            awardName: '山元先生賞',
+            imageSrc: '/Picture/単位ナイナイ.jpeg',
+            title: '',
+            photographer: '単位ナイナイ',
+            comment: '海辺に来たら、サーファーの人が夕方に撤収しているなぁという感じがあり、おそらく真夏というわけでもなさそうなところが相まって、非常にいい残暑感があるように思いました。なので、サーファーの方がいい感じ出してますね。また、配色が落ち着いているのもいいですし、構図も綺麗に配置されているかと。ただ、サーファの方が小さいので、上記の感じが読みづらいのが惜しいなと思いました'
+        },
+        {
+            awardName: '自治会賞',
+            imageSrc: '/Picture/yamap.jpg',
+            title: '',
+            photographer: '限界小学生',
+            comment: 'この写真を見るだけで夏を感じられ、テーマである「夏の思い出」をストレートに表現してくれています'
+        }
+    ];
+
+    return (
+        <div className="space-y-24">
+            <h2 className="font-bold text-3xl text-center text-gray-900">受賞作品</h2>
+            {winners.map((winner, index) => (
+                <div key={index} className="flex flex-col items-center text-center">
+                    <div className="mb-8">
+                        <h3 className="text-3xl font-bold text-center text-indigo-600">{winner.awardName}</h3>
+                    </div>
+                    
+                    <div className="w-full max-w-2xl">
+                        <div 
+                            className="overflow-hidden rounded-xl shadow-lg group cursor-pointer mb-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+                            onClick={() => setSelectedImage(winner.imageSrc)}
+                        >
+                            <img 
+                                src={winner.imageSrc} 
+                                alt={`${winner.awardName} 受賞作品: ${winner.title}`}
+                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/600x400/e2e8f0/4a5568?text=Image+Not+Found'; }}
+                            />
+                        </div>
+                        <div className="flex flex-col justify-center space-y-4 px-2">
+                            <p className="text-gray-700 font-medium text-lg">撮影者: {winner.photographer} さん</p>
+                            <div className="mt-2 p-5 rounded-lg bg-gray-50 text-left">
+                                <p className="text-gray-800 italic leading-relaxed">"{winner.comment}"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+
+            {/* Modal for displaying the selected image */}
+            {selectedImage && (
+                <div 
+                    className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 p-4 transition-opacity duration-300"
+                    onClick={() => setSelectedImage(null)} // Click background to close
+                >
+                     <div className="relative">
+                        <img 
+                            src={selectedImage} 
+                            alt="拡大表示" 
+                            className="max-w-full max-h-screen object-contain rounded-lg shadow-2xl p-8"
+                            onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking the image itself
+                        />
+                        <button 
+                            className="absolute top-2 right-2 text-white hover:text-gray-300 transition-colors"
+                            onClick={() => setSelectedImage(null)}
+                        >
+                            <X size={32} />
+                        </button>
+                    </div>
+
                 </div>
             )}
         </div>
@@ -130,15 +235,13 @@ function PhotoGallery() {
 // This is the main component for the photo contest page.
 // It manages the active tab and checks the submission period.
 function App() {
-    const [activeContent, setActiveContent] = useState('gallery');
+    const [activeContent, setActiveContent] = useState('awarded'); // Default to awarded works
     const [isAccepting, setIsAccepting] = useState(false);
 
     // Effect to check if the current date is within the submission period.
     useEffect(() => {
         const checkSubmissionPeriod = () => {
             const now = new Date();
-
-            // Define the start and end dates for submissions in JST.
             const startDate = new Date('2025-09-12T00:00:00+09:00');
             const endDate = new Date('2025-09-19T23:59:59+09:00');
             setIsAccepting(now >= startDate && now <= endDate);
@@ -230,22 +333,18 @@ function App() {
 
                 {/* Conditional Notice Area */}
                 <div className="mb-12">
-                    {!isAccepting ? (
-                        <div className="p-4 bg-pink-50 text-pink-800 border-2 border-pink-200 border-dashed rounded-xl flex items-center justify-center gap-3 text-center shadow-lg shadow-pink-100/50">
-                            <Info size={20} className="flex-shrink-0 text-pink-500" />
-                            <p className="font-semibold">たくさんのご応募、本当にありがとうございました！<br></br> 現在は選定期間ですので、結果発表までお待ちください！
-                            </p>
-                        </div>
-                    ) : (
-                        <div className="p-4 bg-blue-100 text-blue-800 border border-blue-200 rounded-xl flex items-center justify-center gap-3 text-center">
-                            <Info size={20} className="flex-shrink-0" />
-                            <p className="font-semibold">応募は１人１作品までです。</p>
-                        </div>
-                    )}
+                     <div className="p-4 bg-pink-50 text-pink-800 border-2 border-pink-200 border-dashed rounded-xl flex items-center justify-center gap-3 text-center shadow-lg shadow-pink-100/50">
+                        <Trophy size={20} className="flex-shrink-0 text-pink-500"/>
+                        <p className="font-semibold">たくさんのご応募、本当にありがとうございました！</p>
+                    </div>
+
                 </div>
 
                 {/* Tab Navigation */}
-                <div className="flex justify-center mb-12 space-x-4 sm:space-x-8 border-b border-gray-200">
+                <div className="flex justify-center mb-12 space-x-2 sm:space-x-8 border-b border-gray-200">
+                     <button onClick={() => setActiveContent('awarded')} className={getTabClassName('awarded')}>
+                        <Trophy size={18} /> 受賞作品
+                    </button>
                     <button onClick={() => setActiveContent('gallery')} className={getTabClassName('gallery')}>
                         <ImageIcon size={18} /> ギャラリー
                     </button>
@@ -253,12 +352,15 @@ function App() {
                         <Award size={18} /> 開催概要
                     </button>
                     <button onClick={() => setActiveContent('rules')} className={getTabClassName('rules')}>
-                        <FileText size={18} /> 応募規約
+
+                    <FileText size={18} /> 応募規約
+
                     </button>
                 </div>
 
                 {/* Displayed Content based on active tab */}
                 <div className="fade-in">
+                    {activeContent === 'awarded' && <AwardedWorks />}
                     {activeContent === 'gallery' && <PhotoGallery />}
 
                     {activeContent === 'overview' && (
@@ -356,8 +458,4 @@ function App() {
 }
 
 export default App;
-
-
-
-
 
